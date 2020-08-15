@@ -1,0 +1,28 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "description": "dating app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmanosalvas/Project2.git"
+  },
+  "author": "Ricardo M., Don T., James H.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmanosalvas/Project2/issues"
+  },
+  "homepage": "https://github.com/rmanosalvas/Project2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "jest": "^26.4.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4"
+  }
+}
