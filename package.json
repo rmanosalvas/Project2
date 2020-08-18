@@ -23,6 +23,7 @@
     "jest": "^26.4.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^6.3.4"
+    "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0"
   }
 }
