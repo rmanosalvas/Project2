@@ -1,7 +1,7 @@
 {
-  "name": "1-Passport-Example",
+  "name": "project2",
   "version": "1.0.0",
-  "description": "",
+  "description": "dating app",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
@@ -11,17 +11,19 @@
     "watch": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ricardo M., Don T., James H.",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.0",
+    "express-handlebars": "^5.1.0",
     "express-session": "^1.16.1",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.8.6",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
