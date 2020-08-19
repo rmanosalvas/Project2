@@ -14,17 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.1.0",
-    "jest": "^26.4.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.1.0",
-    "sequelize": "^6.3.4",
-    "sequelize-cli": "^6.2.0"
-=======
     "bcryptjs": "2.4.3",
+    "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
     "mysql2": "^1.6.5",
@@ -41,6 +32,5 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
->>>>>>> 558db05a51fad99318f0b76889a427274cae9c7f
   }
 }
