@@ -1,23 +1,20 @@
 {
   "development": {
     "username": "admin",
-    "password": "password123",
-    "database": "database_development",
-    "host": "127.0.0.1",
+    "password": "Password123",
+    "database": "passport_demo",
+    "host": "http://database-1.cafvzihsfdz1.us-west-2.rds.amazonaws.com/",
     "dialect": "mysql"
   },
   "test": {
-    "username": "admin",
-    "password": "password123",
+    "username": "root",
+    "password": "Password123",
     "database": "database_test",
-    "host": "127.0.0.1",
+    "host": "http://database-1.cafvzihsfdz1.us-west-2.rds.amazonaws.com/",
     "dialect": "mysql"
   },
   "production": {
-    "username": "admin",
-    "password": "password123",
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }
