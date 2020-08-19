@@ -1,5 +1,11 @@
 $(function () {
-    $(".log-in").on("click", function (event) {
+    var loginForm = $("form.login");
+    var emailInput = $("input#email-input");
+    var passwordInput = $("input#password-input");
+
+
+
+    loginForm.on("click", function (event) {
         event.preventDefault();
 
     });
@@ -7,4 +13,4 @@ $(function () {
         event.preventDefault();
 
     });
-})
+});
