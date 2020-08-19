@@ -24,31 +24,3 @@ connection.connect(function(err) {
 });
 
 module.exports = connection;
-
-
-
-
-{
-  "development": {
-    "username": "admin",
-    "password": "Password123",
-    "database": "dateapp",
-    "host": "database-1.cafvzihsfdz1.us-west-2.rds.amazonaws.com",
-    "port": 3306,
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "admin",
-    "password": "Password123",
-    "database": "dateapp",
-    "host": "database-1.cafvzihsfdz1.us-west-2.rds.amazonaws.com",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "admin",
-    "password": "Password123",
-    "database": "dateapp",
-    "host": "database-1.cafvzihsfdz1.us-west-2.rds.amazonaws.com",
-    "dialect": "mysql"
-  }
-}
