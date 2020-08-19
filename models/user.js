@@ -57,7 +57,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: "Please enter at least one preference"
+                    msg: "Please at least enter this preference"
                 }
             }
         },
@@ -69,7 +69,15 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
-
+         securityQuestion1: {
+            type: DataTypes.STRING,
+            allowNull: true
+         },
+         securityQuestion2: {
+            type: DataTypes.STRING,
+            allowNull: true
+         },
+         
     })
 User.associate = function(models){
     Author.hasMany(models.Post, {
