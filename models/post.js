@@ -1,9 +1,10 @@
-module.exports = function(sequelize, DataTypes) {
-    var Post = sequelize.define("Post", {
+// module.exports = function (sequelize, DataTypes) {
+    {}
+    let Post = sequelize.define("Post", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notNull: {
                     msg: "Please enter a title for your date idea"
                 }
@@ -12,11 +13,11 @@ module.exports = function(sequelize, DataTypes) {
         category: {
             type: DataTypes.STRING,
             defaultValue: "Date"
-          },
+        },
         location: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notNull: {
                     msg: "Please enter a date location"
                 }
@@ -25,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
-            validate:{
+            validate: {
                 notNull: {
                     msg: "Please enter your date idea"
                 }
@@ -36,10 +37,10 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Post.associate = function(models){
+    Post.associate = function (models) {
 
         Post.belongsTo(models.User, {
-            foreignKey:{
+            foreignKey: {
                 allowNull: false
             }
         });
