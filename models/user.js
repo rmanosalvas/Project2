@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 module.exports = function (sequelize, DataTypes) {
     let User = sequelize.define("User", {
         first_name: {
@@ -91,7 +93,7 @@ module.exports = function (sequelize, DataTypes) {
         );
     });
     User.associate = function (models) {
-        Author.hasMany(models.Post, {
+        User.hasMany(models.Post, {
             onDelete: "cascade"
         })
     }
