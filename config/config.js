@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 /* eslint-disable quotes */
 /* eslint-disable prettier/prettier */
 require('dotenv').config()
