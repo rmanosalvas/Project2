@@ -1,0 +1,4 @@
+/* Background Entire Site */
+body, html{
+    background-color: rgb(119, 119, 119);
+}
