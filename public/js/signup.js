@@ -1,5 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpForm = $("form.signup");
@@ -27,9 +25,9 @@ $(document).ready(() => {
   // Otherwise we log any errors
   function signUpUser(email, password) {
     $.post("/api/signup", {
-        email: email,
-        password: password
-      })
+      email: email,
+      password: password
+    })
       .then(() => {
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
