@@ -22,10 +22,13 @@ app.set("view engine", "handlebars");
 
 // Define the routes for the express routes
 var routes = require("./routes/html-routes.js");
+var routes2 = require("./routes/api-routes")
 app.use(routes);
+app.use(routes2);
 
 // Start server listener
-app.listen(PORT, function () {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
-});
+db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+      console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    });
+  });
