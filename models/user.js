@@ -45,9 +45,9 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             unique: true,
             validate: {
-              isEmail: true
+                isEmail: true
             }
-          },
+        },
         userPref1: {
             type: DataTypes.STRING,
             allowNull: false,
