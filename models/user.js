@@ -5,57 +5,33 @@ module.exports = function (sequelize, DataTypes) {
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please enter your first name"
-                }
-            }
+
         },
         last_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please enter your last name"
-                }
-            }
+
         },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: {
-                notNull: {
-                    msg: "Please enter a username"
-                }
-            }
+
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please enter a password"
-                }
-            }
 
         },
-        email: {
-            type: DataTypes.STRING,
+        age: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true
-            }
+
         },
+        
         userPref1: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please at least enter this preference"
-                }
-            }
         },
         userPref2: {
             type: DataTypes.STRING,
@@ -65,6 +41,15 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
+        aboutMe1: {
+            type: DataTypes.STRING
+        },
+        aboutMe2: {
+            type: DataTypes.STRING
+        },
+        aboutMe3: {
+            type: DataTypes.STRING
+        },
         securityQuestion1: {
             type: DataTypes.STRING,
             allowNull: true
@@ -73,6 +58,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
+        // email: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     unique: true,
+        //     validate: {
+        //         isEmail: true
+        //     }
+        // },
 
     })
 
