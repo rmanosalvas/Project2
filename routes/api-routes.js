@@ -21,12 +21,14 @@ router.post('/api/signup', (req, res) => {
         securityQuestion2: req.body.securityQuestion2
     })
         .then(function () {
-            res.redirect("/");
-            console.log("____")
+             res.json();
         })
         .catch(function (err) {
             res.status(401).json(err);
         })
 });
+
+
+
 
 module.exports = router;

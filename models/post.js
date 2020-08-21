@@ -33,14 +33,14 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-    Post.associate = function (models) {
+    // Post.associate = function (models) {
 
-        Post.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    //     Post.belongsTo(models.User, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
     return Post;
 };
