@@ -72,11 +72,12 @@ module.exports = function (sequelize, DataTypes) {
 
     })
 
-    User.associate = function (models) {
-        User.hasMany(models.Post, {
-            onDelete: "cascade"
-        })
-    }
+    // User.associate = function (models) {
+    //     User.hasMany(models.Post, {
+    //         onDelete: "cascade"
+    //     })
+    // }
+    
     return User;
 
 }

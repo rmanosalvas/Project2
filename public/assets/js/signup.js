@@ -59,7 +59,8 @@ $(document).ready(function () {
             .then(function (data) {
                 console.log(data)
                 // location.reload();
-                // window.location.replace("/");
+                if(data)
+                window.location.replace("/");
 
             })
     }
