@@ -35,8 +35,6 @@ $(document).ready(function () {
         console.log(userData)
         createNewUser(userData.first_name, userData.last_name, userData.email, userData.password, userData.age, userData.userPref1, userData.userPref2, userData.userPref3, userData.aboutMe1, userData.aboutMe2, userData.aboutMe3, userData.securityQuestion1, userData.securityQuestion2)
 
-
-
     })
 
 

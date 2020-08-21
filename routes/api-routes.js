@@ -2,8 +2,7 @@ var db = require("../models");
 const express = require("express");
 const router = express.Router();
 
-
-
+// Create new user account in the DB
 router.post('/api/signup', (req, res) => {
     db.User.create({
         first_name: req.body.first_name,
@@ -28,6 +27,42 @@ router.post('/api/signup', (req, res) => {
         })
 });
 
+  // GET route for getting all of the posts
+  router.get("/api/posts/", function(req, res) {
+    db.Post.findAll({})
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+// GET route for retrieving a single post
+router.get("/api/posts/:id", function(req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+// Route for creating a new date
+router.post("/api/posts", (req, res) => {
+    console.log(req)
+    db.Post.create({
+        title: req.body.title,
+        category: req.body.category,   
+        location: req.body.location,
+        body: req.body.body  
+    }).then((dbPost) => {
+        // return the result in JSON format
+        res.json(dbPost);
+    }).catch((err) => {
+        // if there are errors log them to the console
+        console.log(err)
+    });
+});
 
 
 
