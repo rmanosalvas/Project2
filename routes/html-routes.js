@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-let User = require("../models/user.js")
-let Post
-
+var db = require("../models");
 
 // Route to Login in page
 router.get("/", function(req, res) {
@@ -14,21 +12,18 @@ router.get("/", function(req, res) {
 router.get("/signup", function(req, res) {
     res.render("signup");
 });
-  
+
 router.get("/dashboard", function(req, res) {
-    post.all(function (allPosts){
-        let hbsObj = {
-            postTitle: allPosts.title,
-            postCategory: allPosts.category
-            allPosts.location
-            allPosts.body
-
-
-
+    // Query posts for all posts
+    db.Post.findAll({})
+      .then(function(postData) {
+          console.log(postData)
+        // Define allpostData
+        var hbsObj = {
+            Post: postData
         }
-        
-    })
-    res.render("dashboard");
+        res.render("dashboard", hbsObj);
+      });
 });
 
 module.exports = router;
