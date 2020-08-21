@@ -31,9 +31,6 @@ module.exports = function (sequelize, DataTypes) {
                 }
             }
         },
-        date: {
-            type: DataTypes.DATE,
-        }
     });
 
     Post.associate = function (models) {

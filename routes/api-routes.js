@@ -4,16 +4,11 @@ const router = express.Router();
 
 
 
-router.post('path', (req, res) => {
-
-});
-
-
 router.post('/api/signup', (req, res) => {
     db.User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        username: req.body.username,
+        email: req.body.email,
         password: req.body.password,
         age: req.body.age,
         userPref1: req.body.userPref1,
@@ -26,7 +21,8 @@ router.post('/api/signup', (req, res) => {
         securityQuestion2: req.body.securityQuestion2
     })
         .then(function () {
-            res.redirect(307, "/api/login");
+            res.redirect("/");
+            console.log("____")
         })
         .catch(function (err) {
             res.status(401).json(err);

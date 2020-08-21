@@ -2,7 +2,7 @@ $(document).ready(function () {
     let signupForm = $(".form-signin")
     let firstName = $("#first-name")
     let lastName = $("#last-name")
-    let emailInput = $("#username")
+    let emailInput = $("#email")
     let passwordInput = $("#input-password")
     let ageInput = $("#age")
     let pref1 = $("#pref-1")
@@ -19,7 +19,7 @@ $(document).ready(function () {
         var userData = {
             first_name: firstName.val().trim(),
             last_name: lastName.val().trim(),
-            username: emailInput.val().trim(),
+            email: emailInput.val().trim(),
             password: passwordInput.val().trim(),
             age: ageInput.val().trim(),
             userPref1: pref1.val().trim(),
@@ -33,18 +33,18 @@ $(document).ready(function () {
         }
 
         console.log(userData)
-        createNewUser(userData.first_name, userData.last_name, userData.username, userData.password, userData.age, userData.userPref1, userData.userPref2, userData.userPref3, userData.aboutMe1, userData.aboutMe2, userData.aboutMe3, userData.securityQuestion1, userData.securityQuestion2)
+        createNewUser(userData.first_name, userData.last_name, userData.email, userData.password, userData.age, userData.userPref1, userData.userPref2, userData.userPref3, userData.aboutMe1, userData.aboutMe2, userData.aboutMe3, userData.securityQuestion1, userData.securityQuestion2)
 
 
 
     })
 
 
-    function createNewUser(first_name, last_name, username, password, age, userPref1, userPref2, userPref3, aboutMe1, aboutMe2, aboutMe3, securityQuestion1, securityQuestion2) {
+    function createNewUser(first_name, last_name, email, password, age, userPref1, userPref2, userPref3, aboutMe1, aboutMe2, aboutMe3, securityQuestion1, securityQuestion2) {
         $.post("/api/signup", {
             first_name: first_name,
             last_name: last_name,
-            username: username,
+            email: email,
             password: password,
             age: age,
             userPref1: userPref1,
@@ -58,8 +58,8 @@ $(document).ready(function () {
         })
             .then(function (data) {
                 console.log(data)
-                console.log("posted")
-                location.reload();
+                // location.reload();
+                // window.location.replace("/");
 
             })
     }
