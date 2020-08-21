@@ -5,7 +5,9 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 // Sets up the Express app to handle data parsing
 const db = require("./models")
-
+// const passport = require("./config/passport");
+const exphbs = require("express-handlebars");
+require('dotenv').config()
 
 app.use(express.urlencoded({
     extended: true
@@ -14,9 +16,12 @@ app.use(express.json());
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
-
 // Setup handlebars
-var exphbs = require("express-handlebars");
+
+// app.use(session({ secret: PROCESS.ENV.SECRET, resave: true, saveUninitialized: true }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 

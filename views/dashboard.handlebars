@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">Your Date Dashboard</h1>
+            <p class="lead my-3">Welcome back {{first_name}}</p>
+            <p class="lead mb-0"><a href="/{{user.username}}/profile" class="text-white font-weight-bold">Update your profile . . . </a></p>
+        </div>
+    </div>
+    <h2>New Dates in your area . . . </h2>
+    <hr>
+        <div class="row">
+    <div class="col-sm-8">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">{{Poster.first_name}}</strong>
+            <h3 class="mb-0">{{Post.title}}</h3>
+            <div class="mb-1 text-muted">{{Post.date_created}}</div>
+            <p class="card-text">Date description:</p>
+            <p class="card-text mb-auto">{{Post.body}}</p>
+            <a href="/user/" class="stretched-link">See all dates from this user</a>
+            </div>
+        </div>
+    </div>
+    <div class="addbar">
+        <h2>Meet someone new today. . . </h2>
+
+        <video autoplay loop muted class="" style="max-width: 500px; max-height: 700px" src="https://imgur.com/OX3dcfE.mp4"></video>
+    </div>
+</div>
+</div>
+
