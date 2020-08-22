@@ -1,6 +1,7 @@
 var db = require("../models");
 const express = require("express");
 const router = express.Router();
+const passport = require("../config/passport");
 
 // Create new user account in the DB
 router.post('/api/signup', (req, res) => {
@@ -20,7 +21,7 @@ router.post('/api/signup', (req, res) => {
         securityQuestion2: req.body.securityQuestion2
     })
         .then(function () {
-             res.json();
+          res.redirect(307, '/api/login');
         })
         .catch(function (err) {
             res.status(401).json(err);
@@ -64,6 +65,28 @@ router.post("/api/posts", (req, res) => {
     });
 });
 
+router.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
+router.post("/api/login", passport.authenticate("local"), function(req, res) {
+  res.json(req.user);
+});
+
+router.get("/api/user_data", function(req, res) {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.json({});
+  } else {
+    // Otherwise send back the user's email and id
+    // Sending back a password, even a hashed password, isn't a good idea
+    res.json({
+      email: req.user.email,
+      id: req.user.id
+    });
+  }
+});
 
 
 module.exports = router;

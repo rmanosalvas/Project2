@@ -15,7 +15,7 @@ module.exports = {
     password: process.env.DB_PASS,
     database: "dateapp",
     host: process.env.DB_HOST,
-    dialect: 'mysql'
+    dialect: 'mysql',
     // api keys
     GOOGLE_PLACES_API: process.env.GOOGLE_PLACES_API    
   },
@@ -24,7 +24,7 @@ module.exports = {
     password: process.env.DB_PASS,
     database: "dateapp",
     host: process.env.DB_HOST,
-    dialect: 'mysql'
+    dialect: 'mysql',
     // api keys
     GOOGLE_PLACES_API: process.env.GOOGLE_PLACES_API
   }
