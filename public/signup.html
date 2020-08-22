@@ -8,96 +8,83 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	{{!-- link to public CSS --}}
-	<link rel="stylesheet" href="../../public/css/style.css">
-	{{!-- link to public JS --}}
+        <link rel="stylesheet" href=".//assets/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery.js"></script>
-
 	<script src="./assets/js/signup.js"></script>
-
-
 </head>
-
 <body>
     <div class="container">
         <div class="row">
-            <div>
+            <div class="col-sm-12">
                 <div class="text-center">
                     <form class="form-signin">
-                        {{!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt=""
-                            width="72" height="72"> --}}
+                        <img class="mb-4" src="" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Please Fill out the information below:</h1>
-                        <br><br>
-    
-                        <h3>First Name:</h3>
-                        <label for="inputFirstName" class="sr-only">Email address</label>
-                        <input type="text" id="first-name" class="form-control" placeholder="John/Jane" required autofocus>
+                        <div class="form-row">
+                            <div class="col-5">
+                                <label for="inputEmail" class="">Email Address(username)</label>
+                                <input type="text" id="email" class="form-control" placeholder="example@email.com" required>        
+                            </div>
+                            <div class="col-3">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" class="form-control" placeholder="John/Jane" required autofocus>
+                            
+                            </div>
+                            <div class="col-3">
+                                <label for="last-name" class="">Last Name</label>
+                                <input type="text" id="last-name" class="form-control" placeholder="Doe" required>
+            
+                            </div>
+                            <div class="col-1">
+                                <label for="inputAge" class="">Age</label>
+                                <input type="number" id="age" class="form-control" max="130" min="18" required>        
+                            </div>
+                        </div>
                         <br>
-    
-                        <h3>Last Name:</h3>
-                        <label for="inputLastName" class="sr-only">Password</label>
-                        <input type="text" id="last-name" class="form-control" placeholder="Doe" required>
-    
-                        <h3>Email:</h3>
-                        <label for="inputEmail" class="sr-only">Password</label>
-                        <input type="text" id="email" class="form-control" placeholder="a@a.com" required>
-    
-    
-                        <h3>Password:</h3>
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="input-password" class="form-control"
-                            placeholder="Shhhhhh use something unique" required>
-    
-    
-                        <h3>Age:</h3>
-                        <label for="inputAge" class="sr-only">Password</label>
-                        <input type="number" id="age" class="form-control" required>
-    
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="input-password" class="">Password</label>
+                                <input type="password" id="input-password" class="form-control" placeholder="Shhhhhh use something unique" required>
+                            </div>
+                        </div>
                         <br>
-                        <h3>What are you looking for in a significant other? (1 of 3):</h3>
-                        <label for="inputPref1" class="sr-only">Password</label>
-                        <input type="text" id="pref-1" class="form-control" required>
-    
-    
+                        <label>List three things you look for in a significant other</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" id="pref-1" class="form-control" required>        
+                            </div>
+                            <div class="col">
+                                <input type="text" id="pref-3" class="form-control" required>   
+                            </div>
+                            <div class="col">
+                                <input type="text" id="pref-2" class="form-control" required>
+                            </div>                                                        
+                        </div>
                         <br>
-                        <h3>What are you looking for in a significant other? (2 of 3):</h3>
-                        <label for="inputPref2" class="sr-only">Password</label>
-                        <input type="text" id="pref-2" class="form-control" required>
-    
-    
-                        <br>
-                        <h3>What are you looking for in a significant other? (3 of 3):</h3>
-                        <label for="inputPref3" class="sr-only">Password</label>
-                        <input type="text" id="pref-3" class="form-control" required>
-    
-                        <br>
-                        <h3>What should someone know about you? (1 of 3):</h3>
-                        <label for="aboutMe1" class="sr-only">Password</label>
-                        <input type="text" id="about-me-1" class="form-control" required>
-    
-                        <br>
-                        <h3>What should someone know about you? (2 of 3):</h3>
-                        <label for="aboutMe2" class="sr-only">Password</label>
-                        <input type="text" id="about-me-2" class="form-control" required>
-    
-                        <br>
-                        <h3>What should someone know about you? (3 of 3):</h3>
-                        <label for="aboutMe3" class="sr-only">Password</label>
-                        <input type="text" id="about-me-3" class="form-control" required>
-    
-                        <br>
-                        <h3>Security Question: What is? (1 of 2):</h3>
-                        <label for="inputPassword" class="sr-only">Password</label>
+                        <label>List three things someone should know about you.</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" id="about-me-1" class="form-control" required>     
+                            </div>
+                            <div class="col">
+                                <input type="text" id="about-me-2" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="about-me-3" class="form-control" required>
+                            </div>                                                        
+                        </div>
+                        <br><hr><br>
+
+                        <label for="security-1" class="">Security Question 1: What was the house number and street name you lived in as a child?</label>
                         <input type="text" id="security-1" class="form-control" required>
-    
                         <br>
-                        <h3>Security Question: What is? (2 of 2):</h3>
-                        <label for="inputSecurity2" class="sr-only">Password</label>
+                        <label for="security-2" class="">Security Question 2: What are the last five digits of your driver's license number?</label>
                         <input type="text" id="security-2" class="form-control" required>
-    
+                        <br>
+                        <hr>
                         <br>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
                     </form>

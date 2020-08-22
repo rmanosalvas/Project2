@@ -1,7 +1,7 @@
 // Required packages
 const express = require("express");
 // Define the port
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 const app = express();
 // Sets up the Express app to handle data parsing
 const db = require("./models")

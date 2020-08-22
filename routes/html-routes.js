@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 
 });
-
+// Route for user creating a new account
 router.get("/signup", function(req, res) {
     res.render("signup");
 });
@@ -25,5 +25,11 @@ router.get("/dashboard", function(req, res) {
         res.render("dashboard", hbsObj);
       });
 });
+
+// Route to create a new date
+router.get("/newpost", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/newPost.html"))
+});
+
 
 module.exports = router;
