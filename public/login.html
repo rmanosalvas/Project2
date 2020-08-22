@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Our App Name</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    {{!-- link to public CSS --}}
-    <link rel="stylesheet" href="../../public/css/style.css">
-    {{!-- link to public JS --}}
-    {{!-- <script src="../../public/js/"></script> --}}
+    <link rel="stylesheet" href=".//assets/css/style.css">
+    <script src="../../public/js/"></script> 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
-
-    <script src="./assets/js/"></script>
-
-
+    <script src="./assets/js/login.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="h-25 mh-25 p-3" style="background-color: rgb(45, 49, 94);">
+        <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Active</a>
+            </li>
+          </ul>
+    </div>
+    <div class="mh-50 container">
         <div class="row">
-            <div class="col-sm-5">
-                <div class="text-center">
-                    <form class="form-login">
-                        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
-                            alt="" width="72" height="72">
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                        <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required
-                            autofocus>
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="text" id="inputPassword" class="form-control" placeholder="Password" required>
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" value="remember-me">Remember me
-                            </label>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-7">
+            <div class="col-sm-8 offset-sm-2">
                 <div class="text-center">
                     <div id="videoCarosel" class="carousel slide align-middle" data-ride="carousel"
                         data-interval="7000">
@@ -111,9 +93,41 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <div class="text-center">
+                    <form class="form-login">
+                        <img class="mb-4" src=""
+                            alt="" width="72" height="72">
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required
+                            autofocus>
+                            <br>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <br>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                        <br>
+                        <div class="checkbox mb-3">
+                            <label>Forget your password? <a href="/recover"> Restore your account.</a></label>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
+    <div class="footer mh-25 p-3 fixed-bottom" >
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About (Our App Name)</a>
+            </li>
+          </ul>
     </div>
-    </div>
+
 </body>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

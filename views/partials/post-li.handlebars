@@ -1,17 +1,9 @@
-<li style="list-style: none;">
-<div class="card text-center">
-  <div class="card-header">
-    {{dataValues.title}}
-	<button class="btn btn-primary btn-sm">edit</button>
+<a id="{{dataValues.id}}" href="/api/posts/{{dataValues.id}}" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{dataValues.title}}</h5>
+    <small>{{dataValues.category}} | {{dataValues.location}}</small>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">{{dataValues.title}}</h5>
-    <p class="card-text">{{dataValues.body}}</p>
-    <a href="#" class="btn btn-primary btn-sm">I'm Interested</a>
-	<a href="#" class="btn btn-primary btn-sm">See {{post.user}}'s profile.</a>
-  </div>
-  <div class="card-footer text-muted">
-    {{dataValues.createdAt}}
-  </div>
-</div>
-</li>
+  <p class="mb-1">{{dataValues.body}}</p>
+  <small>Posted on: {{dataValues.createdAt}}</small>
+</a>
+
