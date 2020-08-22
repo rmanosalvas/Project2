@@ -5,9 +5,11 @@ const PORT = process.env.PORT || 8081;
 const app = express();
 // Sets up the Express app to handle data parsing
 const db = require("./models")
-// const passport = require("./config/passport");
+const passport = require("./config/passport");
 const exphbs = require("express-handlebars");
-require('dotenv').config()
+const dotenv = require('dotenv').config()
+const session = require("express-session")
+
 
 app.use(express.urlencoded({
     extended: true
@@ -18,9 +20,9 @@ app.use(express.json());
 app.use(express.static("public"));
 // Setup handlebars
 
-// app.use(session({ secret: PROCESS.ENV.SECRET, resave: true, saveUninitialized: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(session({ secret: "partynow", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
