@@ -2,24 +2,32 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	{{!-- <link rel="stylesheet" href="" type="text/css" /> --}}
-	<title>Our App Name</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	{{!-- link to CSS --}}
-	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" >
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Our App Name</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../public/assets/css/style.css">
+    <script src="../../public/js/"></script> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./assets/js/login.js"></script>
 </head>
 <body>
-	{{!-- Nav Bar --}}
-	<nav class="navbar navbar-light bg-light">
-		<a class="navbar-brand" href="#">Our App Name</a>
-	</nav>
+    <div class="h-25 mh-25 p-3" style="background-color: rgb(45, 49, 94);">
+        <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="/newpost">New Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard">All Dates</a>
+            </li>			
+          </ul>
+    </div>
 	{{{ body }}}
 	{{!-- Copyright statement --}}
 	<p class="mt-5 mb-3 text-muted">&copy; Copyrights 2020</p>

@@ -3,11 +3,6 @@ module.exports = function (sequelize, DataTypes) {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please enter a title for your date idea"
-                }
-            }
         },
         category: {
             type: DataTypes.STRING,
@@ -16,20 +11,10 @@ module.exports = function (sequelize, DataTypes) {
         location: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please enter a date location"
-                }
-            }
         },
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Please enter your date idea"
-                }
-            }
         },
     });
 
