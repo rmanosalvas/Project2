@@ -32,7 +32,7 @@ $(document).ready(function () {
             securityQuestion2: security2.val().trim()
         }
 
-        console.log(userData)
+        console.log("JAVASCRIPT open")
         createNewUser(userData.first_name, userData.last_name, userData.email, userData.password, userData.age, userData.userPref1, userData.userPref2, userData.userPref3, userData.aboutMe1, userData.aboutMe2, userData.aboutMe3, userData.securityQuestion1, userData.securityQuestion2)
 
     })
@@ -54,18 +54,10 @@ $(document).ready(function () {
             securityQuestion1: securityQuestion1,
             securityQuestion2: securityQuestion2
         })
-            .then(function (data) {
-                console.log(data)
-                // location.reload();
-                if(data)
-                window.location.replace("/");
-
-            })
+            .then(function() {
+                console.log("attempting to redirect")
+                window.location.href = "/";
+            });
     }
-    // function handleLoginErr(err) {
-    //     $("#alert .msg").text(err.responseJSON);
-    //     $("#alert").fadeIn(500);
-    // }
-
 
 });
