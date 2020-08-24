@@ -1,8 +1,4 @@
 $(document).ready(function () {
-
-
-
-
       // Gets an optional query string from our url (i.e. ?post_id=23)
       var url = window.location.search;
       var postId;
@@ -22,29 +18,61 @@ $(document).ready(function () {
       var dateform = $("#newPost");
       var postCategorySelect = $("#category");
       var dateLocation = $("#location");
+      var long = $("#latitudeInput");
+      var lat = $("#longitudeInput");
+
       // Giving the postCategorySelect a default value
       postCategorySelect.val("Something casual");
 
 
-      // // var google = ""
+      // Google Places Autocomplete
+      var searchInput = "";
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById("location")), {
+          types: ["geocode", "establishment"]
+      });
+        // event listener for typing in a city and out outputting the coordinates
+        $(document).on("change", searchInput, function () {
+          document.getElementById("latitudeInput").value = undefined;
+          document.getElementById("longitudeInput").value = undefined;
+      });
 
-      // $.getJSON("https://maps.googleapis.com/maps/api/js?key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc&libraries=places", data,
-      //   function (data,) {
-      //     console.log(data)
-          
-      //   }
-      // );
-
-      //     var searchInput = "";
-      //   autocomplete = new google.maps.places.Autocomplete((document.getElementById("searchInput")), {
-      //     types: ["geocode"]
-      // });
+      // event listener for using get location button using modernizer and open weather api
+      $("#getLocation").on("click", function () {
+        event.preventDefault()
+        get_location(thisLocation)
+        function get_location() {
+          if (Modernizr.geolocation) {
+          navigator.geolocation.getCurrentPosition(thisLocation);
+          } else {
+            // no native support; maybe try Gears?
+          }
+        }
+        function thisLocation(position) {
+          // define the current users long and lat
+          var thisLat = position.coords.latitude;
+          var thisLong = position.coords.longitude;
+          // enter the values into the long lat inputs on google fonts
+          var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="+ thisLat +"&lon="+ thisLong +"&appid=" + "19ebe7d8453b09616b508ab44e2e92b8";
+          // Here we run our AJAX call to the OpenWeatherMap API for the city name
+          $.ajax({
+          url: queryURL,
+          method: "GET"
+          })
+          // We store all of the retrieved data inside of an object called "response"
+          .then(function(citySearch) {
+          var theLocation = citySearch.name
+          console.log(theLocation)
+          // set the textarea to the city city name
+          $(dateLocation).val(theLocation);
+          });
+        }      
+      });
 
       // Adding an event listener for when the form is submitted
       $(dateform).on("submit", function handleFormSubmit(event) {
         event.preventDefault();
         // Wont submit the post if we are missing a body or a title
-        if (!titleInput.val().trim() || !bodyInput.val().trim()) {
+        if (!titleInput.val().trim() || !bodyInput.val().trim()  || !long.val().trim() || !lat.val().trim()  ) {
           return;
         }
         // Constructing a newPost object to hand to the database
@@ -54,9 +82,7 @@ $(document).ready(function () {
           category: postCategorySelect.val(),
           location: dateLocation.val()
         };
-
         console.log(newPost);
-
         // If we're updating a post run updatePost to update a post
         // Otherwise run submitPost to create a whole new post
         if (updating) {
