@@ -30,7 +30,9 @@ router.post('/api/signup', (req, res) => {
 
   // GET route for getting all of the posts
   router.get("/api/posts/", function(req, res) {
-    db.Post.findAll({})
+    db.Post.findAll({
+      // order: ["createdAt", "DESC"]
+    })
       .then(function(dbPost) {
         res.json(dbPost);
       });
