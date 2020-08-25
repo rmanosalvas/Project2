@@ -24,7 +24,7 @@ $(document).ready(function () {
             email: email,
             password: password
         }).then(function(data) {
-            window.location.href = "/dashboard";
+            window.location.href = "/profile";
             console.log(data);
         })
     }

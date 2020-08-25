@@ -2,67 +2,82 @@ const bcrypt = require("bcryptjs");
 
 module.exports = function (sequelize, DataTypes) {
     const User = sequelize.define("User", {
-        first_name: {
+        first_name: {//Signup & Profile
             type: DataTypes.STRING,
             allowNull: false,
-
         },
-        last_name: {
+        last_name: {//Signup & Profile
             type: DataTypes.STRING,
             allowNull: false,
-
         },
-        email: {
+        email: {//Signup & Profile
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             validate: {
                 isEmail: true
             }
-
         },
-        password: {
+        password: {//Signup & Profile
             type: DataTypes.STRING,
             allowNull: false,
-
         },
-        age: {
+        age: {//Signup & Profile
             type: DataTypes.INTEGER,
             allowNull: false,
-
         },
-
-        userPref1: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        userPref2: {
-            type: DataTypes.STRING,
-
-        },
-        userPref3: {
+        orientation: {//Signup & Profile
             type: DataTypes.STRING,
             allowNull: true
         },
-        aboutMe1: {
-            type: DataTypes.STRING
-        },
-        aboutMe2: {
-            type: DataTypes.STRING
-        },
-        aboutMe3: {
-            type: DataTypes.STRING
-        },
-        securityQuestion1: {
+        avatar:{//Signup & Profile
+            type: DataTypes.STRING,
+            allowNull: true
+        },        
+        gender: {//Signup & Profile
             type: DataTypes.STRING,
             allowNull: true
         },
-        securityQuestion2: {
+        securityQuestion1: {//Signup & Profile
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        securityQuestion2: {//Signup & Profile
+            type: DataTypes.STRING,
+            allowNull: false
+        },        
+        userPref1: {// Profile only
             type: DataTypes.STRING,
             allowNull: true
         },
-
-
+        userPref2: {// Profile only
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        userPref3: {// Profile only
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        aboutMe1: {// Profile only
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        aboutMe2: {// Profile only
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        aboutMe3: {// Profile only
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        matches: {// DB only
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        location:{// Profile and DB only
+            type: DataTypes.STRING,
+            allowNull: true
+        }
     })
     User.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
