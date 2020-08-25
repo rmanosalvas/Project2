@@ -10,7 +10,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated.js")
 // Route to Login in page
 router.get("/", function(req, res) {
     if (req.user) {
-        res.redirect("/dashboard");
+      res.sendFile(path.join(__dirname, "../public/profile.html"))
       }
     res.sendFile(path.join(__dirname, "../public/login.html"));
 
@@ -18,9 +18,17 @@ router.get("/", function(req, res) {
 // Route for user creating a new account
 router.get("/signup", function(req, res) {
     if (req.user) {
-        res.redirect("/dashboard");
-      }
-    res.render("signup");
+      res.sendFile(path.join(__dirname, "../public/profile.html"))
+    } else {
+      res.sendFile(path.join(__dirname, "../public/signup.html"));
+    }
+      
+});
+
+router.get('/profile', isAuthenticated, (req, res) => {
+
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
+
 });
 
 router.get("/dashboard", isAuthenticated, function(req, res) {
@@ -38,11 +46,6 @@ router.get("/dashboard", isAuthenticated, function(req, res) {
 
 // Route to create a new date
 router.get("/newpost", isAuthenticated, (req, res) => {
-    res.apiKeys = {
-        google_places: process.env.GOOGLE_PLACES_API
-    }
-    console.log("****************************************")
-    console.log(res)
     // add the google places api to the res
     res.sendFile(path.join(__dirname, "../public/newPost.html"))
 });

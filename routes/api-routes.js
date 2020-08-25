@@ -11,14 +11,19 @@ router.post('/api/signup', (req, res) => {
         email: req.body.email,
         password: req.body.password,
         age: req.body.age,
+        orientation: req.body.orientation,
+        avatar: req.body.avatar,
+        gender: req.body.gender,
+        securityQuestion1: req.body.securityQuestion1,
+        securityQuestion2: req.body.securityQuestion2,
         userPref1: req.body.userPref1,
         userPref2: req.body.userPref2,
         userPref3: req.body.userPref3,
         aboutMe1: req.body.aboutMe1,
         aboutMe2: req.body.aboutMe2,
         aboutMe3: req.body.aboutMe3,
-        securityQuestion1: req.body.securityQuestion1,
-        securityQuestion2: req.body.securityQuestion2
+        matches: req.body.matches,
+        location: req.body.location
     })
         .then(function () {
           res.redirect(307, '/api/login');
