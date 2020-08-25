@@ -55,12 +55,16 @@ router.get("/api/posts/:id", function(req, res) {
 
 // Route for creating a new date
 router.post("/api/posts", (req, res) => {
+  console.log("*************************")
     console.log(req)
+    console.log("*************************")
     db.Post.create({
         title: req.body.title,
         category: req.body.category,   
         location: req.body.location,
-        body: req.body.body  
+        body: req.body.body,
+        interested: req.body.interested,
+        UserId: req.user.id
     }).then((dbPost) => {
         // return the result in JSON format
         res.json(dbPost);
@@ -92,6 +96,5 @@ router.get("/api/user_data", function(req, res) {
     });
   }
 });
-
 
 module.exports = router;

@@ -32,13 +32,16 @@ router.get('/profile', isAuthenticated, (req, res) => {
 });
 
 router.get("/dashboard", isAuthenticated, function(req, res) {
+  console.log(req.user)
+  console.log("*******************************")
     // Query posts for all posts
     db.Post.findAll({})
       .then(function(postData) {
           console.log(postData)
-        // Define allpostData
+        // create handle bars obj to be rendered
         var hbsObj = {
-            Post: postData
+            Post: postData,
+            UserData: req.user
         }
         res.render("dashboard", hbsObj);
       });
@@ -47,7 +50,10 @@ router.get("/dashboard", isAuthenticated, function(req, res) {
 // Route to create a new date
 router.get("/newpost", isAuthenticated, (req, res) => {
     // add the google places api to the res
-    res.sendFile(path.join(__dirname, "../public/newPost.html"))
+    var hbsObj = {
+      UserData: req.user
+  } 
+  res.render("newpost", hbsObj);
 });
 
 

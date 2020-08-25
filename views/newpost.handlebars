@@ -1,0 +1,60 @@
+<script src="./assets/js/newPost.js"></script>
+    {{!-- link to google placesAPI --}}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc&libraries=places"></script>
+    {{!-- link to modernizer  --}}
+    <script src="./assets/js/modernizr-custom.js"></script>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form id="newPost">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="category">Select date type:</label>
+                <select class="custom-select" id="category">
+                  <option value="Something casual">Something Casual</option>
+                  <option value="Romantic">Romantic</option>
+                  <option value="Business">Business</option>
+                </select>
+              </div>
+              <label for="title">Name the date:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                placeholder="Long walk on the beach"/>
+              <br />
+              <div class="row">
+                <div class="col-8">
+                  <label for="location">Where will the date be ? </label>
+                  <input
+                    id="location"
+                    type="text"
+                    class="form-control"
+                    placeholder="Location"
+                  />
+                  <input class="form-control" type="hidden" id="latitudeInput" required/>
+                  
+                  <input class="form-control" type="hidden" id="longitudeInput" required/>
+                </div>
+                <div class="col">
+                  <label for="title">Use location instead?</label><br>
+                  <button id="getLocation" type="submit" class="btn btn-primary">
+                    Use my location
+                  </button>
+                </div>
+              </div>
+              <br />
+              <label for="body"
+                >Describe the date in detail. (don't skip anything):</label
+              >
+              <textarea class="form-control" rows="10" id="body"></textarea>
+              <br />
+              <button type="submit" class="btn btn-success submit btn-md">
+                Post Date
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
