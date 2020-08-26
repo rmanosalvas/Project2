@@ -92,7 +92,7 @@ $(document).ready(function () {
         })
             .then(function() {
                 console.log("attempting to redirect")
-                window.location.href = "/";
+                window.location.href = "/logout";
             });
     }
 

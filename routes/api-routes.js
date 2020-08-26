@@ -16,12 +16,12 @@ router.post('/api/signup', (req, res) => {
       gender: req.body.gender,
       securityQuestion1: req.body.securityQuestion1,
       securityQuestion2: req.body.securityQuestion2,
-      // userPref1: req.body.userPref1,
-      // userPref2: req.body.userPref2,
-      // userPref3: req.body.userPref3,
-      // aboutMe1: req.body.aboutMe1,
-      // aboutMe2: req.body.aboutMe2,
-      // aboutMe3: req.body.aboutMe3,
+      userPref1: req.body.userPref1,
+      userPref2: req.body.userPref2,
+      userPref3: req.body.userPref3,
+      aboutMe1: req.body.aboutMe1,
+      aboutMe2: req.body.aboutMe2,
+      aboutMe3: req.body.aboutMe3,
       matches: req.body.matches,
       location: req.body.location
     })
@@ -98,26 +98,38 @@ router.get("/api/user_data", function (req, res) {
     });
   };
 
-  router.put("/api/")
+});
+
+router.put("/api/signup", passport.authenticate("local"), function (req, res) {
+  db.User.update(
+    req.body, {
+    where: {
+      aboutMe1: req.body.aboutMe1,
+      aboutMe2: req.body.aboutMe2,
+      aboutMe3: req.body.aboutMe3,
+      userPref1: req.body.userPref1,
+      userPref2: req.body.userPref2,
+      userPref3: req.body.userPref3
+    },
+  }).then(function(dbPut){
+    res.json(dbPut);
+  });
 });
 
 
-router.post("/api/interested/", function (req, res) {
-  // req.user.id
-  if (!req.user) {
-    res.json({});
-  } else {
-    db.Post.findAll({
-        where: {
 
-        }
-      })
-      .then(function (dbPost) {
-        res.json(dbPost);
-      });
-  }
+// router.put("/api/post/", function (req, res) {
+//   db.Post.update(
+//     req.post.interested, {
+//     where: {  
 
-})
+//     },
+//   }).then(function (dbPost) {
+//     res.json(dbPost);
+//   });
+
+
+// })
 
 
 module.exports = router;
