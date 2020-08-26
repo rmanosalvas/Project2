@@ -5,8 +5,6 @@ var db = require("../models");
 const { response } = require("express");
 const isAuthenticated = require("../config/middleware/isAuthenticated.js")
 
-
-
 // Route to Login in page
 router.get("/", function(req, res) {
     if (req.user) {
@@ -26,8 +24,10 @@ router.get("/signup", function(req, res) {
 });
 
 router.get('/profile', isAuthenticated, (req, res) => {
-
-    res.sendFile(path.join(__dirname, "../public/profile.html"));
+  var hbsObj = {
+    UserData: req.user
+} 
+res.render("profile", hbsObj)
 
 });
 
@@ -35,8 +35,12 @@ router.get("/dashboard", isAuthenticated, function(req, res) {
   console.log(req.user)
   console.log("*******************************")
     // Query posts for all posts
-    db.Post.findAll({})
-      .then(function(postData) {
+    db.Post.findAll({
+      // Add order conditions here....
+      order: [
+          ['createdAt', 'DESC']
+      ],
+    }).then(function(postData) {
           console.log(postData)
         // create handle bars obj to be rendered
         var hbsObj = {
@@ -49,7 +53,6 @@ router.get("/dashboard", isAuthenticated, function(req, res) {
 
 // Route to create a new date
 router.get("/newpost", isAuthenticated, (req, res) => {
-    // add the google places api to the res
     var hbsObj = {
       UserData: req.user
   } 

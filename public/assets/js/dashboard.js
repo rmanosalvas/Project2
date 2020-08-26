@@ -1,7 +1,6 @@
 $(document).ready(function () {
     // define the current user Id
-    currentUserId = null
-
+    let currentUserId = $("#thisUser").val();
     // number the like counters
     for (let i = 0; i < $(".likeCount").length; i++) {
         // Get the count of likes for the current i
@@ -12,14 +11,26 @@ $(document).ready(function () {
     }
     // add event listenre for the button being clicked
     $(".interestedBtn").click(function (e) { 
-        
         e.preventDefault(e);
-        let interestedListSTR = $("#"+(this.id)).val();
+        console.log(currentUserId)
+        
         // convert the sting to an array
-        
+        let interestedListSTR = $("#"+(this.id)).val();
+        console.log()
         let interestedListARRAY = interestedListSTR.split(",");
-        console.log(interestedListARRAY)
-        console.log("you clicked the interested buttn")
+
         
+        console.log(interestedListARRAY)
+            console.log(interestedListARRAY.includes(currentUserId))
+
+        if (interestedListARRAY.includes(currentUserId)){
+            // push the current user
+            interestedListARRAY.push(currentUserId)
+        } 
+        // put the new interestedListARRAY in the database
     });
+
+
+
+
 });
