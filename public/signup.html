@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<link rel="stylesheet" href="" type="text/css" />
 	<title>Our App Name</title>
 	<!-- Bootstrap CSS -->
@@ -10,8 +11,7 @@
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href=".//assets/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="./assets/js/signup.js"></script>
 </head>
@@ -20,25 +20,25 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="text-center">
-                    <form class="form-signin">
-                        <img class="mb-4" src="" alt="" width="72" height="72">
+                    <form class="form-signin" enctype="multipart/form-data">
                         <h1 class="h3 mb-3 font-weight-normal">Please Fill out the information below:</h1>
+                        <br>
                         <div class="form-row">
-                            <div class="col-5">
+                            <div class="col-sm-5">
                                 <label for="inputEmail" class="">Email Address(username)</label>
                                 <input type="text" id="email" class="form-control" placeholder="example@email.com" required>        
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-3">
                                 <label for="first-name">First Name</label>
                                 <input type="text" id="first-name" class="form-control" placeholder="John/Jane" required autofocus>
                             
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-3">
                                 <label for="last-name" class="">Last Name</label>
                                 <input type="text" id="last-name" class="form-control" placeholder="Doe" required>
             
                             </div>
-                            <div class="col-1">
+                            <div class="col-sm-1">
                                 <label for="inputAge" class="">Age</label>
                                 <input type="number" id="age" class="form-control" max="130" min="18" required>        
                             </div>
@@ -51,7 +51,8 @@
                             </div>
                         </div>
                         <br>
-                        <label>List three things you look for in a significant other</label>
+                        <hr>
+                        <!-- <label>List three things you look for in a significant other</label>
                         <div class="form-row">
                             <div class="col">
                                 <input type="text" id="pref-1" class="form-control" required>        
@@ -62,9 +63,40 @@
                             <div class="col">
                                 <input type="text" id="pref-2" class="form-control" required>
                             </div>                                                        
+                        </div> -->
+                        <h1 class="h3 mb-3 font-weight-normal">Build Your Profile</h1>
+                        <div class="form-row">
+                            <div class="col-sm-6 offset-sm-3">
+                                <picture>
+                                    <label for="avatar" class="">Upload a photo</label>
+                                    <img id="avatarImage" class="img-fluid rounded-circle" src="./assets/profile-pic-placeholder.png" alt="user avatar" srcset="">
+                                </picture>
+                            </div>
+                            <div class="col-5"> 
+                            <input id="avatar" type="file" name="avatar" accept="image/*" required/>
+                        </div>
                         </div>
                         <br>
-                        <label>List three things someone should know about you.</label>
+                        <hr>
+                        <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="gender">Select Your Pronouns</label>
+                                <select id="gender" class="form-control">
+                                  <option selected>he, him, his</option>
+                                  <option selected>she, her, her</option>
+                                  <option selected>they, them, theirs</option>
+                                </select></div>
+                            <div class="col">
+                                <label for="orientation">Sexual Orientation</label>
+                                <select id="orientation" class="form-control">
+                                  <option selected>Straight</option>
+                                  <option selected>Gay</option>
+                                  <option selected>Bisexual</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <label>List three things someone should know about you.</label>
                         <div class="form-row">
                             <div class="col">
                                 <input type="text" id="about-me-1" class="form-control" required>     
@@ -75,9 +107,10 @@
                             <div class="col">
                                 <input type="text" id="about-me-3" class="form-control" required>
                             </div>                                                        
-                        </div>
-                        <br><hr><br>
-
+                        </div> -->
+                        <br>
+                        <hr>
+                        <br>
                         <label for="security-1" class="">Security Question 1: What was the house number and street name you lived in as a child?</label>
                         <input type="text" id="security-1" class="form-control" required>
                         <br>
@@ -95,7 +128,6 @@
 </body>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	crossorigin="anonymous"></script>

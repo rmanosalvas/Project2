@@ -1,0 +1,22 @@
+body{
+    background-color: lightblue;
+    color: black;
+}
+
+#profile {
+    background-color: rgb(217, 238, 221);
+}
+
+
+
+h1 {
+    font-family: 'Playball', cursive;
+}
+
+h3 {
+    font-family: 'Halant', serif;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}

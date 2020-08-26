@@ -1,0 +1,47 @@
+    <div class="container">
+        <div class="text-center">
+            <div class="row" id="margin">
+                <div class="col-md-8 offset-md-2" id="profile">
+                    <br>
+                    <div class="col-md">
+                        <img src="../public/assets/profile-pic-placeholder.png" class="img-fluid"
+                            alt="Responsive image">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h1 id="name">{{UserData.first_name}} {{UserData.last_name}}</h1>                            <hr>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 id="age">Age: {{UserData.age}}</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 id="orientation">Interested in: {{UserData.orientation}}</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 id="location">{{UserData.location}}</h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <p>Hello, my name is{{UserData.first_name}} {{UserData.last_name}} and let me tell you a bit about myself.
+                            </p>
+                            <!-- <br> -->
+                            <p>I like to  <span id="hide"></span><input id="userAboutMe1" type="text" value="{{UserData.userPref1}}"> and I am looking for someone who wants to  <span id="hide"></span><input id="userPref1" type="text" value="type here ..."> . I'm
+                                always  <span id="hide"></span><input id="txt" type="text" value="type here ...">
+                                , lets  <span id="hide"></span><input id="txt" type="text" value="type here ..."> .  <span id="hide"></span><input id="txt" type="text" value="type here ...">  is really important to me so I hope you
+                                 <span id="hide"></span><input id="txt" type="text" value="type here ..."> .
+                            </p>
+                            <p>If you think this could workout then like one of my <a href="myposts">posts!</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

@@ -5,5 +5,12 @@
   </div>
   <p class="mb-1">{{dataValues.body}}</p>
   <small>Posted on: {{dataValues.createdAt}}</small>
+  <hr>
+  <div class="btn-group" role="group">
+  <button type="button" class="btn btn-secondary">Comment</button>
+  <button type="button" class="btn btn-secondary">Flag</button>
+  <button id="interested-{{dataValues.id}}" type="button" value="{{dataValues.interested}}" class="btn btn-secondary interestedBtn">Show Interest <span id="likeCount{{dataValues.id}}" class="badge badge-light likeCount">0</span>
+  <span class="sr-only">unread messages</span> others already have.</button>
+</div>
 </a>
 

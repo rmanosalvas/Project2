@@ -1,15 +1,14 @@
 /* Background Entire Site */
 body{
-    background-color: rgb(75, 73, 73);
+    background-color: rgb(172, 162, 162);
     color: black;
 }
 .footer{
     background-color: rgb(3, 44, 78);
 }
 input, #inputPassword, #inputEmail{
-    color: rgb(231, 231, 235);
-    background-color: black;
-    border-color: black;
+    color: black;
+    border-color: rgb(104, 103, 103);
     border-radius: 5px;
 }
 video{
@@ -24,8 +23,9 @@ video{
 #videoCarosel{
     padding: 0px;
 }
+
 .card{
-    background-color: rgb(66, 66, 66);
+    background-color: rgb(138, 136, 136);
     border: 1px solid #2b244b;
     border-radius: 8px;
     box-shadow: rgba(180, 185, 189, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;

@@ -1,0 +1,14 @@
+<nav class="nav flex-column flex-sm-row bg-dark">
+  <input id="thisUser" type="text" value="{{UserData.id}}" hidden>
+  <a class="flex-sm-fill text-sm-center nav-link " href="/dashboard">Dashboard</a>
+  <a class="flex-sm-fill text-sm-center nav-link" href="/newpost">Create New Date</a>
+  <a class="flex-sm-fill text-sm-center nav-link" href="/matches">Your Matches</a>
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{UserData.first_name}}'s Stuff</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/profile{{UserData.id}}">View your profile</a>
+      <a class="dropdown-item" href="/matches/{{UserData.id}}">View your matches</a>
+      <a class="dropdown-item" href="/settings/{{UserData.id}}">Change your account settings</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/logout">Logout</a>
+    </div>
+</nav>
