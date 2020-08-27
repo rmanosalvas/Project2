@@ -5,6 +5,8 @@ var db = require("../models");
 const {  response } = require("express");
 const isAuthenticated = require("../config/middleware/isAuthenticated.js");
 const { profile } = require("console");
+const { match } = require("assert");
+const user = require("../models/user");
 
 // Route to Login in page
 router.get("/", function (req, res) {
@@ -91,13 +93,37 @@ router.get("/posts/:id", isAuthenticated, (req, res) => {
     ['createdAt', 'DESC']
   ],
 }).then(function (usersPosts) {
-    // console.log(usersPosts)
     // create handle bars obj to be rendered
     var hbsObj = {
       Post: usersPosts,
       UserData: req.user
     }
     res.render("posts", hbsObj);
+}).catch((err) => {
+    console.log("there was an issue")
+    console.log(err)
+  });
+});
+
+// viewing all posts by id
+router.get("/matches", isAuthenticated, (req, res) => {
+  // console.log(req)
+  // console.log("THE REQUEST BODY")
+  db.match.findAll(
+    { where: { user1: req.user.id},
+    include: [db.User],
+  order: [
+    ['createdAt', 'DESC']
+  ],
+}).then(function (matchedUsers) {
+  console.log(matchedUsers)
+  
+    // create handle bars obj to be rendered
+    var hbsObj = {
+      Post: usersPosts,
+      UserData: req.user
+    }
+    res.render("matches", hbsObj);
 }).catch((err) => {
     console.log("there was an issue")
     console.log(err)

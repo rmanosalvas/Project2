@@ -20,7 +20,7 @@
                             <h3 id="age">Age: {{Profile.dataValues.age}}</h3>
                         </div>
                         <div class="col-md-4">
-                            <h3 id="orientation">Interested in: {{Profile.dataValues.orientation}}</h3>
+                            <h3 id="orientation">Orientation: {{Profile.dataValues.orientation}}</h3>
                         </div>
                         <div class="col-md-4">
                             <h3 id="location">{{Profile.dataValues.location}}</h3>
@@ -40,7 +40,7 @@
                     <input id="othersId" value="{{Profile.dataValues.id}}" hidden>
                     <a type="button" class="btn btn-primary" href="/posts/{{Profile.dataValues.id}}" role="button">See {{Profile.dataValues.gender}} dates.</a>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#matchModal">Match with {{Profile.dataValues.first_name}}!</button>
+                    <button id="modalToggleBtn" type="button" class="btn btn-danger" data-toggle="modal" data-target="#matchModal">Match with {{Profile.dataValues.first_name}}!</button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="matchModal" tabindex="-1" aria-labelledby="matchModalLabel" aria-hidden="true">

@@ -11,10 +11,9 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Match.associate = function (models) {
-        Match.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
+        Match.belongsTo(models.User, { 
+            foreignKey: { allowNull: false  }
+        
         });
     };
 
