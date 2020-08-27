@@ -7,8 +7,8 @@ body{
     background-color: rgb(3, 44, 78);
 }
 input, #inputPassword, #inputEmail{
-    color: rgb(231, 231, 235);
-    border-color: black;
+    color: black;
+    border-color: rgb(104, 103, 103);
     border-radius: 5px;
 }
 video{

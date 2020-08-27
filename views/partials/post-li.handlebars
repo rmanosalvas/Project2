@@ -1,9 +1,15 @@
-<a id="{{dataValues.id}}" href="/api/posts/{{dataValues.id}}" class="list-group-item list-group-item-action">
+<a id="{{dataValues.id}}" class="list-group-item list-group-item-action">
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{dataValues.title}}</h5>
     <small>{{dataValues.category}} | {{dataValues.location}}</small>
   </div>
   <p class="mb-1">{{dataValues.body}}</p>
   <small>Posted on: {{dataValues.createdAt}}</small>
+  <hr>
+  <div class="btn-group" role="group">
+  <button id="interested-{{dataValues.id}}" type="button" value="{{dataValues.interested}}" class="btn btn-outline-secondary interestedBtn">Show Interest <span id="likeCount{{dataValues.id}}" class="badge badge-light likeCount">0</span>
+  <button href="/profile/{{dataValues.UserId}}" type="button"  class="btn btn-outline-danger">See user profile</button>
+  <span class="sr-only">unread messages</span></button>
+</div>
 </a>
 

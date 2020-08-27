@@ -1,0 +1,78 @@
+    {{!-- link to google placesAPI --}}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc&libraries=places"></script>
+    {{!-- link to modernizer  --}}
+    <script src="/assets/js/modernizr-custom.js"></script>
+    <br><br>
+    <script src="/assets/js/profile.js"></script>
+    <script src="/assets/js/signup.js"></script>
+    <script src="/assets/js/newPost.js"></script>
+<div class="container">
+        <div class="">
+            <form id="" action="" method="">
+                 <div class="row" id="margin">
+                     <div class="col-md-8 offset-md-2" id="profile">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h1 id="name">{{UserData.first_name}} <span>{{UserData.last_name}}</span></h1>
+                            <hr><br>       
+                        </div>
+                    </div>                         
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-6 offset-sm-3">
+                            <picture>
+                                <label for="avatar" class="">Upload a photo</label>
+                                <img id="avatarImage" class="img-fluid rounded-circle" src="/assets/profile-pic-placeholder.png" alt="user avatar" srcset="">
+                            </picture>
+                        </div>
+                        <div class="col-5"> 
+                        <input id="avatar" type="file" name="avatar" accept="image/*" required/>
+                    </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3 id="age">Age: {{UserData.age}}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3 id="orientation">Sexual Orientation: {{UserData.orientation}}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3 id="gender">Identifies as: {{UserData.gender}}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                        <label for="location">Where are you from? </label>
+                        <input id="location"type="text"class="form-control"placeholder="{{UserData.location}}"/>
+                        <input class="form-control" type="hidden" id="latitudeInput" required/>
+                        
+                        <input class="form-control" type="hidden" id="longitudeInput" required/>
+                        </div>
+                        <div class="col">
+                        <label for="title">Use location instead?</label><br>
+                        <button id="getLocation" type="submit" class="btn btn-primary">
+                            Use my location
+                        </button>
+                        </div>
+                    </div>                     
+                    <hr><br>
+                    <div class="row">
+                        <div class="col">
+                            <p>Hello, my name is{{UserData.first_name}} {{UserData.last_name}} and let me tell you a bit about myself.
+                            </p>
+                            <br>
+
+                            <p>I like to  <span id="hide"></span><input id="aboutMe1" type="text" value="{{UserData.aboutMe1}}"required> and I am looking for someone who wants to  <span id="hide"></span><input id="userPref1" type="text" value="{{UserData.userPref1}}" required> . I'm
+                                always  <span id="hide"></span><input id="aboutMe2" type="text" value="{{UserData.aboutMe2}}" required> ,so lets  <span id="hide"></span><input id="userPref2" type="text" value="{{UserData.userPref2}}" required>.  Know that <span id="hide"></span><input id="aboutMe3" type="text" value="{{UserData.aboutMe3}}" required> is really important to me so I hope you
+                                 <span id="hide"></span><input id="userPref3" type="text" value="{{UserData.userPref3}}">.
+                            </p>
+                            <p>If you think this could workout then like one of my <a href="/posts/{{UserData.id}}">posts!</a></p>
+                        </div>
+                    </div>                            
+            </form>
+            <button id="profileUpdate" type="submit" class="btn btn-success mb-2">Update Profile</button>
+
+
+

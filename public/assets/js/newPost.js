@@ -80,7 +80,8 @@ $(document).ready(function () {
           title: titleInput.val().trim(),
           body: bodyInput.val().trim(),
           category: postCategorySelect.val(),
-          location: dateLocation.val()
+          location: dateLocation.val(),
+          interested: null,
         };
         console.log(newPost);
         // If we're updating a post run updatePost to update a post
