@@ -1,10 +1,14 @@
-var db = require("../models");
+const db = require("../models");
 const express = require("express");
 const router = express.Router();
 const passport = require("../config/passport");
 const {  response } = require("express");
 const isAuthenticated = require("../config/middleware/isAuthenticated.js");
 const { profile } = require("console");
+const multer  = require('multer')
+const toButcketFS = require("../config/middleware/toButcketFS.js");
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 
 // Create new user account in the DB
 router.post('/api/signup', (req, res) => {
@@ -35,6 +39,19 @@ router.post('/api/signup', (req, res) => {
       res.status(401).json(err);
     })
 });
+// ######################################################
+// saving profile picture to AWS S3 #####################
+// ######################################################
+router.post('/profile', upload.single('avatar'), function (req, res, next) {
+    console.log("the BODY********************************************")
+    console.log(req.file)
+
+  toButcketFS((req.file.buffer), (req.file.originalname))
+  console.log("MIDDLE WARE RAN ********************************************^")
+
+
+})
+
 
 // GET route for getting all of the posts
 router.get("/api/posts/", function (req, res) {

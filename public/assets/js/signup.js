@@ -28,19 +28,21 @@ $(document).ready(function () {
         const preview = document.querySelector('img');
         const file = document.querySelector('input[type=file]').files[0];
         const reader = new FileReader();
+        console.log(reader)
         reader.addEventListener("load", function () {
           // convert image file to base64 string
           preview.src = reader.result;
         }, false);
-      
         if (file) {
           reader.readAsDataURL(file);
+          console.log(file)
           return file
         }
     });
+    
 
-    signupForm.on("submit", function (e,) {
-        e.preventDefault();
+    signupForm.on("submit", function (e) {
+        // e.preventDefault();
         var userData = {
             first_name: firstName.val().trim(),
             last_name: lastName.val().trim(),
@@ -69,6 +71,15 @@ $(document).ready(function () {
 
 
     function createNewUser({userData}) {
+        // // send the file to the DB
+        // $.post("/profile", {
+        //     avatar: userData.avatar,
+        //     enctype: "multipart/form-data"
+        // }).then(function() {
+        //     console.log("FILE UPLOADED")
+
+        // });
+
         $.post("/api/signup", {
             first_name: userData.first_name,
             last_name: userData.last_name,
