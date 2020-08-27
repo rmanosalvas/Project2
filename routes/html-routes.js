@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 var db = require("../models");
-const {
-  response
-} = require("express");
-const isAuthenticated = require("../config/middleware/isAuthenticated.js")
+const {  response } = require("express");
+const isAuthenticated = require("../config/middleware/isAuthenticated.js");
+const { profile } = require("console");
 
 // Route to Login in page
 router.get("/", function (req, res) {
@@ -31,13 +30,7 @@ router.get("/signup", function (req, res) {
 
 });
 
-router.get('/profile', isAuthenticated, (req, res) => {
-  var hbsObj = {
-    UserData: req.user
-  }
-  res.render("profile", hbsObj)
 
-});
 
 // main dashboard
 router.get("/dashboard", isAuthenticated, function (req, res) {
@@ -67,40 +60,48 @@ router.get("/newpost", isAuthenticated, (req, res) => {
 });
 
 // Viewing other profiles by id
-router.get("/profile/:id", isAuthenticated, function (req, res) {
+router.get("/profile/:id", isAuthenticated, (req, res) => {
   db.User.findOne({
     where: {
       id: req.params.id
     }
   }).then(function (profileFound){
-
+    console.log(profileFound)
     var hbsObj = {
       UserData: req.user,
       Profile: profileFound
     }
-    res.render("profileView", hbsObj);
+    res.render("otherprofile", hbsObj);
   })
+});
+
+router.get('/profile', isAuthenticated, (req, res) => {
+  var hbsObj = {
+    UserData: req.user
+  }
+  res.render("profile", hbsObj)
+
 });
 
 // viewing all posts by id
 router.get("/posts/:id", isAuthenticated, (req, res) => {
-  
-  db.Post.findAll({ where: { 
-    Userid: req.params.id,
-
-  },
+  db.Post.findAll(
+    { where: {UserId: req.params.id},
   order: [
     ['createdAt', 'DESC']
   ],
 }).then(function (usersPosts) {
-    console.log(usersPosts)
+    // console.log(usersPosts)
     // create handle bars obj to be rendered
     var hbsObj = {
       Post: usersPosts,
       UserData: req.user
     }
     res.render("posts", hbsObj);
-  })
+}).catch((err) => {
+    console.log("there was an issue")
+    console.log(err)
+  });
 });
 
 

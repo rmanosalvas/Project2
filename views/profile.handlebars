@@ -1,19 +1,19 @@
-<script src="./assets/js/signup.js"></script>
-<script src="./assets/js/newPost.js"></script>
     {{!-- link to google placesAPI --}}
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc&libraries=places"></script>
     {{!-- link to modernizer  --}}
-    <script src="./assets/js/modernizr-custom.js"></script>
+    <script src="/assets/js/modernizr-custom.js"></script>
     <br><br>
-    <script src="./assets/js/profile.js"></script>
-    <div class="container">
+    <script src="/assets/js/profile.js"></script>
+    <script src="/assets/js/signup.js"></script>
+    <script src="/assets/js/newPost.js"></script>
+<div class="container">
         <div class="">
             <form id="" action="" method="">
                  <div class="row" id="margin">
                      <div class="col-md-8 offset-md-2" id="profile">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <h1 id="name">{{UserData.first_name}} {{UserData.last_name}}</h1>
+                            <h1 id="name">{{UserData.first_name}} <span>{{UserData.last_name}}</span></h1>
                             <hr><br>       
                         </div>
                     </div>                         
@@ -22,7 +22,7 @@
                         <div class="col-sm-6 offset-sm-3">
                             <picture>
                                 <label for="avatar" class="">Upload a photo</label>
-                                <img id="avatarImage" class="img-fluid rounded-circle" src="./assets/profile-pic-placeholder.png" alt="user avatar" srcset="">
+                                <img id="avatarImage" class="img-fluid rounded-circle" src="/assets/profile-pic-placeholder.png" alt="user avatar" srcset="">
                             </picture>
                         </div>
                         <div class="col-5"> 
@@ -58,7 +58,6 @@
                         </div>
                     </div>                     
                     <hr><br>
-
                     <div class="row">
                         <div class="col">
                             <p>Hello, my name is{{UserData.first_name}} {{UserData.last_name}} and let me tell you a bit about myself.

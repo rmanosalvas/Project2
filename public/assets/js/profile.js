@@ -55,18 +55,20 @@ $(document).ready(function(){
 
         generateProfile(userData)
     });
-
+    
     function generateProfile(userData) {
         $.ajax({
             type: "PUT",
             url: "/api/profile/"+currentProfileID,
             data: userData,
 
-            success: function (res) {
-                console.log(res)
-            }
+        }).then(function(response) {
+            window.location.href = "/profile/"+currentProfileID;
+            // window.location.reload()
         });
     };
+
+
 
     
 });

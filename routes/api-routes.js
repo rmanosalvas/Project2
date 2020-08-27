@@ -2,6 +2,9 @@ var db = require("../models");
 const express = require("express");
 const router = express.Router();
 const passport = require("../config/passport");
+const {  response } = require("express");
+const isAuthenticated = require("../config/middleware/isAuthenticated.js");
+const { profile } = require("console");
 
 // Create new user account in the DB
 router.post('/api/signup', (req, res) => {
@@ -77,6 +80,23 @@ router.post("/api/posts", (req, res) => {
   });
 });
 
+// creating a new match
+router.post("/api/matches", (req, res) => {
+  console.log(req.body)
+  db.match.create({
+    user1: req.body.user1,
+    user2: req.body.user2,
+    UserId: req.user.id
+  },
+  ).then((newMatch) => {
+    // return the result in JSON format
+    res.json(newMatch);
+  }).catch((err) => {
+    // if there are errors log them to the console
+    console.log(err)
+  });
+});
+
 router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
@@ -103,9 +123,6 @@ router.get("/api/user_data", function (req, res) {
 
 
 router.put("/api/profile/:id", function (req, res) {
-  console.log("*****************************************************************")
-  console.log(req)
-  console.log("*****************************************************************")
   db.User.update(
     { avatar : req.body.avatar,
       location: req.body.location,
@@ -116,10 +133,8 @@ router.put("/api/profile/:id", function (req, res) {
       userPref2: req.body.userPref2,
       userPref3: req.body.userPref3,
     },{ where : { id: req.params.id}},
-
-  
   ).then(function (result) {
-  res.redirect("/profile/"+req.user.id  );
+    res.json(result);
 })
 
 
@@ -129,7 +144,6 @@ router.put("/api/post/", function (req, res) {
   db.Post.update(
     req.post.interested, {
     where: {  
-
     },
   }).then(function (dbPost) {
     res.json(dbPost);
