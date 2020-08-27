@@ -1,10 +1,10 @@
 /* Background Entire Site */
 body{
-    background-color: rgb(172, 162, 162);
+    background-color: rgb(216, 214, 214);
     color: black;
 }
 .footer{
-    background-color: rgb(3, 44, 78);
+    background-color: rgb(194, 188, 188);
 }
 input, #inputPassword, #inputEmail{
     color: black;

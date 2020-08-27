@@ -1,9 +1,15 @@
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="./assets/js/dashboard.js"></script>
-<h2 id="recentPost">Recently Posted Dates</h2>
-<div class="container">
-    <div class="list-group">
+<link rel="stylesheet" href="./assets/css/flickity.css">
+<br><br>
+<h2>Swipe to See Dates ->>></h2>
+    <div class="carousel list-group-item" data-flickity='{ "prevNextButtons": false, "pageDots": false, "fullscreen": true}'>
         {{#each Post}}
         {{> post-li}}
         {{/each}}
     </div>
-</div>
+
+<br>
+<br>
+<br>

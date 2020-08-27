@@ -2,6 +2,9 @@ var db = require("../models");
 const express = require("express");
 const router = express.Router();
 const passport = require("../config/passport");
+const {  response } = require("express");
+const isAuthenticated = require("../config/middleware/isAuthenticated.js");
+const { profile } = require("console");
 
 // Create new user account in the DB
 router.post('/api/signup', (req, res) => {
@@ -16,12 +19,12 @@ router.post('/api/signup', (req, res) => {
       gender: req.body.gender,
       securityQuestion1: req.body.securityQuestion1,
       securityQuestion2: req.body.securityQuestion2,
-      // userPref1: req.body.userPref1,
-      // userPref2: req.body.userPref2,
-      // userPref3: req.body.userPref3,
-      // aboutMe1: req.body.aboutMe1,
-      // aboutMe2: req.body.aboutMe2,
-      // aboutMe3: req.body.aboutMe3,
+      userPref1: req.body.userPref1,
+      userPref2: req.body.userPref2,
+      userPref3: req.body.userPref3,
+      aboutMe1: req.body.aboutMe1,
+      aboutMe2: req.body.aboutMe2,
+      aboutMe3: req.body.aboutMe3,
       matches: req.body.matches,
       location: req.body.location
     })
@@ -51,15 +54,16 @@ router.get("/api/posts/:id", function (req, res) {
       }
     })
     .then(function (dbPost) {
-      res.json(dbPost);
+      let hbObj = {
+        Post: dbPost,
+        UserData: req.user
+      }
+      res.render("post", hbObj)
     });
 });
 
 // Route for creating a new date
 router.post("/api/posts", (req, res) => {
-  console.log("*************************")
-  console.log(req)
-  console.log("*************************")
   db.Post.create({
     title: req.body.title,
     category: req.body.category,
@@ -70,6 +74,23 @@ router.post("/api/posts", (req, res) => {
   }).then((dbPost) => {
     // return the result in JSON format
     res.json(dbPost);
+  }).catch((err) => {
+    // if there are errors log them to the console
+    console.log(err)
+  });
+});
+
+// creating a new match
+router.post("/api/matches", (req, res) => {
+  console.log(req.body)
+  db.match.create({
+    user1: req.body.user1,
+    user2: req.body.user2,
+    UserId: req.user.id
+  },
+  ).then((newMatch) => {
+    // return the result in JSON format
+    res.json(newMatch);
   }).catch((err) => {
     // if there are errors log them to the console
     console.log(err)
@@ -98,26 +119,41 @@ router.get("/api/user_data", function (req, res) {
     });
   };
 
-  router.put("/api/")
 });
 
 
-router.post("/api/interested/", function (req, res) {
-  // req.user.id
-  if (!req.user) {
-    res.json({});
-  } else {
-    db.Post.findAll({
-        where: {
+router.put("/api/profile/:id", function (req, res) {
+  db.User.update(
+    { avatar : req.body.avatar,
+      location: req.body.location,
+      aboutMe1: req.body.aboutMe1,
+      aboutMe2: req.body.aboutMe2,
+      aboutMe3: req.body.aboutMe3,
+      userPref1: req.body.userPref1,
+      userPref2: req.body.userPref2,
+      userPref3: req.body.userPref3,
+    },{ where : { id: req.params.id}},
+  ).then(function (result) {
+    res.json(result);
+})
 
-        }
-      })
-      .then(function (dbPost) {
-        res.json(dbPost);
-      });
-  }
+
+});
+
+router.put("/api/post/", function (req, res) {
+  db.Post.update(
+    req.post.interested, {
+    where: {  
+    },
+  }).then(function (dbPost) {
+    res.json(dbPost);
+  });
+
 
 })
+
+
+
 
 
 module.exports = router;
