@@ -39,9 +39,8 @@ router.get('/profile', isAuthenticated, (req, res) => {
 
 });
 
+// main dashboard
 router.get("/dashboard", isAuthenticated, function (req, res) {
-  console.log(req.user)
-  console.log("*******************************")
   // Query posts for all posts
   db.Post.findAll({
     // Add order conditions here....
@@ -67,20 +66,46 @@ router.get("/newpost", isAuthenticated, (req, res) => {
   res.render("newpost", hbsObj);
 });
 
-// route for interests page 
-router.get("/interested", (req, res) => {
-  let hbsObj = {}
-  db.Post.findAll({
-    // Add order conditions here....
+// Viewing other profiles by id
+router.get("/profile/:id", isAuthenticated, function (req, res) {
+  db.User.findOne({
     where: {
-      UserId: [req.user.id]
-    },
-  }).then(function (usersPosts) {
-    // add all posts to the HB file
-    hbsObj += usersPosts
-    res.render("interests", hbsObj);
-  })
+      id: req.params.id
+    }
+  }).then(function (profileFound){
 
+    var hbsObj = {
+      UserData: req.user,
+      Profile: profileFound
+    }
+    res.render("profileView", hbsObj);
+  })
 });
+
+// viewing all posts by id
+router.get("/posts/:id", isAuthenticated, (req, res) => {
+  
+  db.Post.findAll({ where: { 
+    Userid: req.params.id,
+
+  },
+  order: [
+    ['createdAt', 'DESC']
+  ],
+}).then(function (usersPosts) {
+    console.log(usersPosts)
+    // create handle bars obj to be rendered
+    var hbsObj = {
+      Post: usersPosts,
+      UserData: req.user
+    }
+    res.render("posts", hbsObj);
+  })
+});
+
+
+// Matches
+
+
 
 module.exports = router;
