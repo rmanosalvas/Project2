@@ -92,9 +92,14 @@ module.exports = function (sequelize, DataTypes) {
         );
     });
     User.associate = function (models) {
-        User.hasMany(models.Post, models.Match,{
+        User.hasMany(models.Post, {
             onDelete: "cascade"
-        })
+        });
+        User.hasMany(models.match,{
+            onDelete: "cascade",
+            as: 'matched'
+        });
+    
     }
 
 
