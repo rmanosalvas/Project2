@@ -13,7 +13,7 @@ console.log("**************************************************")
 console.log(files)
 console.log("**************************************************")
 // The name of the bucket that you have created
-const BUCKET_NAME = "gw-project2-app";
+const BUCKET_NAME = "dateapppbucket";
 
 const s3 = new AWS.S3({
     accessKeyId: ID,

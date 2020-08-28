@@ -1,0 +1,11 @@
+<input id="othersId" value="{{Post.dataValues}}" hidden>
+<br><br>
+<h2 id="myMatches">{{UserData.first_name}} {{UserData.last_name}}'s Current Matches</h2>
+<div class="container">
+    <div class="list-group">
+        {{#each Post}}
+        {{> match-li}}
+        <br>
+        {{/each}}
+    </div>
+</div>

@@ -169,7 +169,21 @@ router.put("/api/post/", function (req, res) {
 
 })
 
-
+// get user info
+router.get("/user/:id", (req, res) => {
+  db.User.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (UserFound){
+    console.log(UserFound)
+    var userSearch = {
+      UserData: req.user,
+      Profile: UserFound
+    }
+    res.json(userSearch)
+  })
+});
 
 
 
