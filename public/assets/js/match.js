@@ -7,8 +7,8 @@ $(document).ready(function () {
     let currentUserId = $("#thisUser").val();
     // other users id
     let otherUserId = $("#othersId").val()
-    // console.log(currentUserId + " this user")
-    // console.log(otherUserId + " other user")
+    console.log(currentUserId + " this user")
+    console.log(otherUserId + " other user")
     if ((currentUserId == otherUserId)) {
     // Hide the modal and match buttons if user viewing their own profile
     $(modalButton).remove();
@@ -48,5 +48,17 @@ $(document).ready(function () {
             window.location.href = "/matches";
         })
     }
+
+
+$.ajax({
+    type: "get",
+    url: "/user/"+otherUserId,
+    data: "data",
+    dataType: "dataType",
+    success: function (response) {
+        console.log(response)
+    }
+});
+
 
 });

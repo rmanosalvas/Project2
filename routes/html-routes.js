@@ -2,10 +2,16 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 var db = require("../models");
-const {  response } = require("express");
+const {
+  response
+} = require("express");
 const isAuthenticated = require("../config/middleware/isAuthenticated.js");
-const { profile } = require("console");
-const { match } = require("assert");
+const {
+  profile
+} = require("console");
+const {
+  match
+} = require("assert");
 const user = require("../models/user");
 
 // Route to Login in page
@@ -67,7 +73,7 @@ router.get("/profile/:id", isAuthenticated, (req, res) => {
     where: {
       id: req.params.id
     }
-  }).then(function (profileFound){
+  }).then(function (profileFound) {
     console.log(profileFound)
     var hbsObj = {
       UserData: req.user,
@@ -87,19 +93,21 @@ router.get('/profile', isAuthenticated, (req, res) => {
 
 // viewing all posts by id
 router.get("/posts/:id", isAuthenticated, (req, res) => {
-  db.Post.findAll(
-    { where: {UserId: req.params.id},
-  order: [
-    ['createdAt', 'DESC']
-  ],
-}).then(function (usersPosts) {
+  db.Post.findAll({
+    where: {
+      UserId: req.params.id
+    },
+    order: [
+      ['createdAt', 'DESC']
+    ],
+  }).then(function (usersPosts) {
     // create handle bars obj to be rendered
     var hbsObj = {
       Post: usersPosts,
       UserData: req.user
     }
     res.render("posts", hbsObj);
-}).catch((err) => {
+  }).catch((err) => {
     console.log("there was an issue")
     console.log(err)
   });
@@ -107,32 +115,45 @@ router.get("/posts/:id", isAuthenticated, (req, res) => {
 
 // viewing all posts by id
 router.get("/matches", isAuthenticated, (req, res) => {
-  // console.log(req)
+  console.log(req.user)
   // console.log("THE REQUEST BODY")
-  db.match.findAll(
-    { where: { user1: req.user.id},
-    include: [db.User],
-  order: [
-    ['createdAt', 'DESC']
-  ],
-}).then(function (matchedUsers) {
-  console.log(matchedUsers)
-  
+  let abc = req.user.id
+  let matchedUser = findUser(abc)
+console.log(matchedUser)
+  db.User.findAll({
+    where: {
+      id: matchedUser
+    },
+    order: [
+      ['createdAt', 'DESC']
+    ],
+
+  }).then(function (matches) {
+
     // create handle bars obj to be rendered
     var hbsObj = {
-      Post: usersPosts,
+      Post: matches,
       UserData: req.user
     }
     res.render("matches", hbsObj);
-}).catch((err) => {
-    console.log("there was an issue")
-    console.log(err)
   });
-});
+})
 
-
-// Matches
-
-
+// find one user
+function findUser(abc) {
+  db.match.findAll({
+    where: {
+      user1: abc
+    },
+    include: [db.User],
+    order: [
+      ['createdAt', 'DESC']
+    ],
+  }).then(function (matches) {
+    console.log(matches[0].user2)
+    let result = matches[0].user2
+    return result
+  })
+}
 
 module.exports = router;
