@@ -113,59 +113,91 @@ router.get("/posts/:id", isAuthenticated, (req, res) => {
   });
 });
 
-// // viewing all posts by id
-// router.get("/matches", isAuthenticated, (req, res) => {
-//   console.log(req.user)
-//   // console.log("THE REQUEST BODY")
-//   let abc = req.user.id
-//   let matchedUser = findUser(abc)
-// console.log(matchedUser)
-//   db.User.findAll({
-//     where: {
-//       id: matchedUser
-//     },
-//     order: [
+// router.get("/matches", isAuthenticated, (req, res, next) => {
+//   // placeholder for all matches
+//   var matchArray = []
+//   var hbObj = {
+//     UserData: req.user,
+//     PotentialMatches: matchArray
+//   }
+//   console.log(req)
+//   console.log("***************** MATCHES REQUEST")
+//   db.match.findAll({
+//     where: {UserId: req.user.id},
+//         order: [
 //       ['createdAt', 'DESC']
 //     ],
+//   }).then((allMatches) => {
+//     console.log(allMatches)
+//      console.log(" 128 **********ALL MATCHESSSSS")
 
-//   }).then(function (matches) {
+    
+//     allMatches.forEach(matched => {
+//       db.User.findOne({
+//         where: {id: matched.dataValues.user2}
+//       }).then((matchFound) => {
+//         matchArray.push(matchFound)
+//         console.log(matchFound)
+//         console.log("PUSHING MATCHES")
+//         console.log(matchArray)
+//         console.log("ALL MATCHES FOREAL############################")
+//       }).catch((err) => {
+//         console.log(err)
+//       });
+//     }) 
 
-//     // create handle bars obj to be rendered
-//     var hbsObj = {
-//       Post: matches,
-//       UserData: req.user
-//     }
-//     res.render("matches", hbsObj);
+//   }).catch((err) => {
+    
 //   });
-// })
+    
+  
+  
+// });
 
-// find one user
-function findUser(abc) {
-  db.match.findAll({
-    where: {
-      user1: abc
-    },
-    include: [db.User],
-    order: [
-      ['createdAt', 'DESC']
-    ],
-  }).then(function (matches) {
-    console.log(matches[0].user2)
-    let result = matches[0].user2
-    return result
-  })
-}
+router.get("/matches", isAuthenticated, (req, res) => {
+  console.log("ROUTE HIT SUCCESS")
+  // db.match.findAll({
+  //   where: {UserId: req.user.id},
+  //   include: [{ model: db.User, where: {UserId: 1}}],
 
-router.get('/matches', isAuthenticated, (req, res) => {
+  // }).then((result) => {
+  //   console.log(result)
+  //   console.log("thEEEEE results!!!!!")
+
+
+
+
+  // }).catch((err) => {
+    
+  // });
   db.User.findAll({
+    include: [{
+      model: db.match,
+      through: {
+        attributes: ['UserId'],
+        include: [{model: db.match }]
+        // where: {user2: req.user.id}
+      }
+    }]
+  }).then((result) => {
+    console.log(result[0])
+    
+  }).catch((err) => {
+    
+  });
 
+
+})
+
+
+router.get('/users', isAuthenticated, (req, res) => {
+  db.User.findAll({
   }).then(function (allUsers) {
-    var allUsers = {
+    var hbObj = {
       UserData: req.user,
       PotentialMatches: allUsers
     }
-    console.log(allUsers)
-    res.render("matches", allUsers)
+    res.render("matches", hbObj)
   })
   
 });

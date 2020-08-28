@@ -64,7 +64,7 @@ router.get("/api/posts/", function (req, res) {
 });
 
 // GET route for retrieving a single post
-router.get("/api/posts/:id", function (req, res) {
+router.get("/api/posts/:id", isAuthenticated, function (req, res) {
   db.Post.findOne({
       where: {
         id: req.params.id
@@ -97,22 +97,21 @@ router.post("/api/posts", (req, res) => {
   });
 });
 
-// // creating a new match
-// router.post("/api/matches", (req, res) => {
-//   console.log(req.body)
-//   db.match.create({
-//     user1: req.body.user1,
-//     user2: req.body.user2,
-//     UserId: req.user.id
-//   },
-//   ).then((newMatch) => {
-//     // return the result in JSON format
-//     res.json(newMatch);
-//   }).catch((err) => {
-//     // if there are errors log them to the console
-//     console.log(err)
-//   });
-// });
+// creating a new match
+router.post("/api/matches/:id", (req, res) => {
+  db.match.create({
+    user1: req.body.user1,
+    user2: req.body.user2,
+    UserId: req.body.UserId
+  },
+  ).then((newMatch) => {
+    // return the result in JSON format
+    res.json(newMatch);
+  }).catch((err) => {
+    // if there are errors log them to the console
+    console.log(err)
+  });
+});
 
 router.get("/logout", function (req, res) {
   req.logout();
