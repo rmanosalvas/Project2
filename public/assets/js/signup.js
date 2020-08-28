@@ -71,14 +71,14 @@ $(document).ready(function () {
 
 
     function createNewUser({userData}) {
-        // // send the file to the DB
-        // $.post("/profile", {
-        //     avatar: userData.avatar,
-        //     enctype: "multipart/form-data"
-        // }).then(function() {
-        //     console.log("FILE UPLOADED")
+        // send the file to the DB
+        $.post("/profile",{
+            avatar: userData.avatar,
+            enctype: "multipart/form-data"
+        }).then(function() {
+            console.log("attempting to redirect")
 
-        // });
+        });
 
         $.post("/api/signup", {
             first_name: userData.first_name,

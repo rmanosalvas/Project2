@@ -1,11 +1,53 @@
-<script src="/assets/js/match.js"></script>
-<div id="{{dataValues.id}}" class="carousel-cell">
-  <div class="container">
+<a data-toggle="modal" data-target="#{{dataValues.id}}matchModal">
+  <div class="col-lg-4 mb-4">
+    <div class="card h-100">
+      <input type="text" value="{{dataValues.id}}" hidden>
+      <img src="{{dataValues.avatar}}" class="card-img-top rounded" alt="{{dataValues.firs_name}}">
+      <hr>
+      <small class="text-muted">Likes {{dataValues.aboutMe1}}</small>
+      <div class="card-body">
+        <h5 class="card-title">{{dataValues.first_name}}</h5>
+            <div class="row">
+                </p>
+                <!-- <br> -->
+                <p>I like to {{dataValues.aboutMe1}} and I am looking for someone who wants to {{dataValues.userPref1}}. I'm always {{dataValues.aboutMe2}}, so lets  {{dataValues.userPref2}} .  Lastly, Know that {{dataValues.aboutMe3}} is really important to me so I hope you {{dataValues.userPref3}}.
+                </p>
 
-    <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{dataValues.user2}}</h5>
-            <h5 class="mb-1">{{User.dataValues.email}}</h5>
+        </div>
+        
+      </div>
+      <a class="btn btn-outline-dark" href="#" role="button" data-toggle="modal" data-target="#{{dataValues.id}}matchModal">See more about {{dataValues.first_name}} !</a>
+    </div>
+  </div>
+</a>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="{{dataValues.id}}matchModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="{{dataValues.id}}ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{{dataValues.id}}ModalLabel">Take a better look at {{dataValues.first_name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Age: {{dataValues.age}}</li>
+        <li class="list-group-item">Orientation: {{dataValues.orientation}}</li>
+        <li class="list-group-item">Pronouns: {{dataValues.gender}}</li>
+        <li class="list-group-item">From: {{dataValues.location}}</li>
+        <li class="list-group-item">Member Since: {{dataValues.createdAt}}</li>
+      </ul>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn btn-outline-primary" data-dismiss="modal">I'm done here</button>
+        <a href="/posts/{{dataValues.id}}" role="button" type="button" class="btn btn-outline-danger">See posts</a>
+        <a href="mailto:{{dataValues.email}}" role="button" type="button" class="btn btn-outline-success">Message {{dataValues.first_name}}</a>
+      </div>
     </div>
   </div>
 </div>
