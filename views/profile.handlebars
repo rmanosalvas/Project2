@@ -3,12 +3,12 @@
     {{!-- link to modernizer  --}}
     <script src="/assets/js/modernizr-custom.js"></script>
     <br><br>
-    <script src="/assets/js/profile.js"></script>
     <script src="/assets/js/signup.js"></script>
+    <script src="/assets/js/profile.js"></script>
     <script src="/assets/js/newPost.js"></script>
 <div class="container">
         <div class="">
-            <form id="" action="" method="">
+            <form class="updateAvatar" action="/profile" method="post" enctype="multipart/form-data">
                  <div class="row" id="margin">
                      <div class="col-md-8 offset-md-2" id="profile">
                     <div class="row">
@@ -22,7 +22,7 @@
                         <div class="col-sm-6 offset-sm-3">
                             <picture>
                                 <label for="avatar" class="">Upload a photo</label>
-                                <img id="avatarImage" class="img-fluid rounded-circle" src="https://gw-project2-app.s3-eu-west-1.amazonaws.com/{{UserData.avatar}}" alt="user avatar" srcset="">
+                                <img id="avatarImage" class="img-fluid rounded-circle" src="{{UserData.avatar}}" alt="user avatar">
                             </picture>
                         </div>
                         <div class="col-5"> 
@@ -45,9 +45,8 @@
                     <div class="row">
                         <div class="col-8">
                         <label for="location">Where are you from? </label>
-                        <input id="location"type="text"class="form-control"placeholder="{{UserData.location}}"/>
+                        <input  id="location"type="text"class="form-control"placeholder="{{UserData.location}}" value="{{UserData.location}}" required/>
                         <input class="form-control" type="hidden" id="latitudeInput" required/>
-                        
                         <input class="form-control" type="hidden" id="longitudeInput" required/>
                         </div>
                         <div class="col">

@@ -9,6 +9,25 @@ $(document).ready(function () {
     let otherUserId = $("#othersId").val()
     console.log(currentUserId + " this user")
     console.log(otherUserId + " other user")
+    let age = $("#age").text();
+    console.log(age)
+    $('#badPage').on('shown.bs.modal', function () {
+        $('#badPage').trigger('focus')
+      })
+
+    if (age == "Age: ") {
+        // remove the entire page and open a model
+        $(".container").remove();
+
+        $('#badPage').modal({show: true})
+        
+    }
+
+
+        // $(".container").remove();
+
+    
+
     if ((currentUserId == otherUserId)) {
     // Hide the modal and match buttons if user viewing their own profile
     $(modalButton).remove();
@@ -49,6 +68,7 @@ $(document).ready(function () {
         })
     }
 
+    
 
 $.ajax({
     type: "get",

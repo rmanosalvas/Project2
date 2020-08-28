@@ -113,31 +113,31 @@ router.get("/posts/:id", isAuthenticated, (req, res) => {
   });
 });
 
-// viewing all posts by id
-router.get("/matches", isAuthenticated, (req, res) => {
-  console.log(req.user)
-  // console.log("THE REQUEST BODY")
-  let abc = req.user.id
-  let matchedUser = findUser(abc)
-console.log(matchedUser)
-  db.User.findAll({
-    where: {
-      id: matchedUser
-    },
-    order: [
-      ['createdAt', 'DESC']
-    ],
+// // viewing all posts by id
+// router.get("/matches", isAuthenticated, (req, res) => {
+//   console.log(req.user)
+//   // console.log("THE REQUEST BODY")
+//   let abc = req.user.id
+//   let matchedUser = findUser(abc)
+// console.log(matchedUser)
+//   db.User.findAll({
+//     where: {
+//       id: matchedUser
+//     },
+//     order: [
+//       ['createdAt', 'DESC']
+//     ],
 
-  }).then(function (matches) {
+//   }).then(function (matches) {
 
-    // create handle bars obj to be rendered
-    var hbsObj = {
-      Post: matches,
-      UserData: req.user
-    }
-    res.render("matches", hbsObj);
-  });
-})
+//     // create handle bars obj to be rendered
+//     var hbsObj = {
+//       Post: matches,
+//       UserData: req.user
+//     }
+//     res.render("matches", hbsObj);
+//   });
+// })
 
 // find one user
 function findUser(abc) {
@@ -155,5 +155,20 @@ function findUser(abc) {
     return result
   })
 }
+
+router.get('/matches', isAuthenticated, (req, res) => {
+  db.User.findAll({
+
+  }).then(function (allUsers) {
+    var allUsers = {
+      UserData: req.user,
+      PotentialMatches: allUsers
+    }
+    console.log(allUsers)
+    res.render("matches", allUsers)
+  })
+  
+});
+
 
 module.exports = router;

@@ -19,7 +19,7 @@ router.post('/api/signup', (req, res) => {
       password: req.body.password,
       age: req.body.age,
       orientation: req.body.orientation,
-      avatar: req.body.avatar,
+      avatar: "https://dateapppbucket.s3-us-west-2.amazonaws.com/"+req.body.avatar,
       gender: req.body.gender,
       securityQuestion1: req.body.securityQuestion1,
       securityQuestion2: req.body.securityQuestion2,
@@ -31,7 +31,7 @@ router.post('/api/signup', (req, res) => {
       aboutMe3: req.body.aboutMe3,
       matches: req.body.matches,
       location: req.body.location
-    })
+  })
     .then(function () {
       res.redirect(307, '/api/login');
     })
@@ -97,22 +97,22 @@ router.post("/api/posts", (req, res) => {
   });
 });
 
-// creating a new match
-router.post("/api/matches", (req, res) => {
-  console.log(req.body)
-  db.match.create({
-    user1: req.body.user1,
-    user2: req.body.user2,
-    UserId: req.user.id
-  },
-  ).then((newMatch) => {
-    // return the result in JSON format
-    res.json(newMatch);
-  }).catch((err) => {
-    // if there are errors log them to the console
-    console.log(err)
-  });
-});
+// // creating a new match
+// router.post("/api/matches", (req, res) => {
+//   console.log(req.body)
+//   db.match.create({
+//     user1: req.body.user1,
+//     user2: req.body.user2,
+//     UserId: req.user.id
+//   },
+//   ).then((newMatch) => {
+//     // return the result in JSON format
+//     res.json(newMatch);
+//   }).catch((err) => {
+//     // if there are errors log them to the console
+//     console.log(err)
+//   });
+// });
 
 router.get("/logout", function (req, res) {
   req.logout();
@@ -184,7 +184,6 @@ router.get("/user/:id", (req, res) => {
     res.json(userSearch)
   })
 });
-
 
 
 module.exports = router;
