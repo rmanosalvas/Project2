@@ -113,59 +113,56 @@ router.get("/posts/:id", isAuthenticated, (req, res) => {
   });
 });
 
-// // viewing all posts by id
-// router.get("/matches", isAuthenticated, (req, res) => {
-//   console.log(req.user)
-//   // console.log("THE REQUEST BODY")
-//   let abc = req.user.id
-//   let matchedUser = findUser(abc)
-// console.log(matchedUser)
-//   db.User.findAll({
-//     where: {
-//       id: matchedUser
-//     },
-//     order: [
-//       ['createdAt', 'DESC']
-//     ],
+router.get("/matches", isAuthenticated, (req, res, next) => {
 
-//   }).then(function (matches) {
+  const getMatches = db.match.findAll({
+    where: { user1: req.user.id}
+  }).then((result) => {
+    // map the result for the user IDs matched with the current user
+  let matchedUsers = result.map(match => {
+    const usersFiltered = [];
+    console.log(match.dataValues.user2)
+    usersFiltered.push(match.dataValues.user2)
 
-//     // create handle bars obj to be rendered
-//     var hbsObj = {
-//       Post: matches,
-//       UserData: req.user
-//     }
-//     res.render("matches", hbsObj);
-//   });
-// })
+    return usersFiltered
+  });
 
-// find one user
-function findUser(abc) {
-  db.match.findAll({
-    where: {
-      user1: abc
-    },
-    include: [db.User],
+  db.User.findAll({
+    where: {id: matchedUsers}
+  }).then((allMatches) => {
+    console.log(allMatches)
+    
+    var hbsObj = {
+      UserData: req.user,
+      PotentialMatches: allMatches
+    }
+    res.render("matches", hbsObj)
+
+  }).catch((err) => {
+    console.log(err)
+  });
+
+
+  }).catch((err) => {
+    console.log(err)
+  });
+
+  getMatches//gets hoisted
+
+})
+
+router.get('/community', isAuthenticated, (req, res) => {
+  db.User.findAll({
+    where: { },
     order: [
       ['createdAt', 'DESC']
     ],
-  }).then(function (matches) {
-    console.log(matches[0].user2)
-    let result = matches[0].user2
-    return result
-  })
-}
-
-router.get('/matches', isAuthenticated, (req, res) => {
-  db.User.findAll({
-
   }).then(function (allUsers) {
-    var allUsers = {
+    var hbObj = {
       UserData: req.user,
       PotentialMatches: allUsers
     }
-    console.log(allUsers)
-    res.render("matches", allUsers)
+    res.render("community", hbObj)
   })
   
 });

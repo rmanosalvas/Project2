@@ -7,8 +7,11 @@ const isAuthenticated = require("../config/middleware/isAuthenticated.js");
 const { profile } = require("console");
 const multer  = require('multer')
 const toButcketFS = require("../config/middleware/toButcketFS.js");
-var storage = multer.memoryStorage()
-var upload = multer({ storage: storage })
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
+// ######################################################
+// saving profile picture to AWS S3 #####################
+// ######################################################
 
 // Create new user account in the DB
 router.post('/api/signup', (req, res) => {
@@ -64,7 +67,7 @@ router.get("/api/posts/", function (req, res) {
 });
 
 // GET route for retrieving a single post
-router.get("/api/posts/:id", function (req, res) {
+router.get("/api/posts/:id", isAuthenticated, function (req, res) {
   db.Post.findOne({
       where: {
         id: req.params.id
@@ -97,22 +100,21 @@ router.post("/api/posts", (req, res) => {
   });
 });
 
-// // creating a new match
-// router.post("/api/matches", (req, res) => {
-//   console.log(req.body)
-//   db.match.create({
-//     user1: req.body.user1,
-//     user2: req.body.user2,
-//     UserId: req.user.id
-//   },
-//   ).then((newMatch) => {
-//     // return the result in JSON format
-//     res.json(newMatch);
-//   }).catch((err) => {
-//     // if there are errors log them to the console
-//     console.log(err)
-//   });
-// });
+// creating a new match
+router.post("/api/matches/:id", (req, res) => {
+  db.match.create({
+    user1: req.body.user1,
+    user2: req.body.user2,
+    UserId: req.body.UserId
+  },
+  ).then((newMatch) => {
+    // return the result in JSON format
+    res.json(newMatch);
+  }).catch((err) => {
+    // if there are errors log them to the console
+    console.log(err)
+  });
+});
 
 router.get("/logout", function (req, res) {
   req.logout();
@@ -139,7 +141,7 @@ router.get("/api/user_data", function (req, res) {
 });
 
 
-router.put("/api/profile/:id", function (req, res) {
+router.put("/api/profile/:id", upload.single('avatar'), function (req, res) {
   db.User.update(
     { avatar : req.body.avatar,
       location: req.body.location,

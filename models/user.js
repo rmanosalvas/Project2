@@ -70,10 +70,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        matches: {// DB only
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         location:{// Profile and DB only
             type: DataTypes.STRING,
             allowNull: true
@@ -99,6 +95,10 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade",
             as: 'matched'
         });
+        User.belongsToMany(models.match, 
+            {through: 'id'},
+            { foreignKey: 'id', allowNull: false }
+        )
     
     }
 

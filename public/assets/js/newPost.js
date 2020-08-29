@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  console.log("js connected")
       // Gets an optional query string from our url (i.e. ?post_id=23)
       var url = window.location.search;
       var postId;
@@ -71,34 +72,70 @@ $(document).ready(function () {
       // Adding an event listener for when the form is submitted
       $(dateform).on("submit", function handleFormSubmit(event) {
         event.preventDefault();
+
+        
         // Wont submit the post if we are missing a body or a title
         if (!titleInput.val().trim() || !bodyInput.val().trim()  || !long.val().trim() || !lat.val().trim()  ) {
           return;
         }
+
         // Constructing a newPost object to hand to the database
-        var newPost = {
+        var uncheckedPost = {
           title: titleInput.val().trim(),
           body: bodyInput.val().trim(),
           category: postCategorySelect.val(),
           location: dateLocation.val(),
           interested: null,
         };
-        console.log(newPost);
+
+        var dirtyPost = JSON.stringify(uncheckedPost)
+        console.log(dirtyPost)
+        // settings for filtering the post for bad launguage
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter",
+          "method": "POST",
+          "headers": {
+            "x-rapidapi-host": "neutrinoapi-bad-word-filter.p.rapidapi.com",
+            "x-rapidapi-key": "d82c676afemsh7edaf163ce44088p1641dajsn681616f67751",
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          "data": {
+            "censor-character": "#",
+            "content": dirtyPost
+          }
+        }
+        
+
+
+
+        $.ajax(settings).done(function (response) {
+          console.log(response)
+          var theResponse = response['censored-content']
+        
+        var cleanPost = JSON.parse(theResponse)
+        console.log(cleanPost)
+
+
+        console.log(cleanPost);
         // If we're updating a post run updatePost to update a post
         // Otherwise run submitPost to create a whole new post
         if (updating) {
-          newPost.id = postId;
-          updatePost(newPost);
+          cleanPost.id = postId;
+          updatePost(cleanPost);
         } else {
-          console.log(newPost)
-          submitPost(newPost);
+          console.log(cleanPost)
+          submitPost(cleanPost);
         }
+
+        }) 
       });
 
       // Submits a new post and brings user to blog page upon completion
       function submitPost(Post) {
         $.post("/api/posts/", Post, function () {
-
+          
           //Navigate the user back to their dashboard
           window.location.href = "/dashboard";
         });

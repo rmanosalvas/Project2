@@ -39,7 +39,8 @@ $(document).ready(function () {
             // create the new match object
             var thisMatch = {
                 user1: currentUserId,
-                user2: otherUserId
+                user2: otherUserId,
+                UserId: currentUserId
             }// create the new match
             createMatch(thisMatch)
 
@@ -51,10 +52,11 @@ $(document).ready(function () {
           console.log(newMatch)
         $.ajax({
             type: "POST",
-            url: "/api/matches/",
+            url: "/api/matches/"+currentUserId,
             data: {
                 user1: newMatch.user1,
                 user2: newMatch.user2,
+                UserId: newMatch.UserId
             },
             success: function (response) {
                 console.log(response)
@@ -70,15 +72,15 @@ $(document).ready(function () {
 
     
 
-$.ajax({
-    type: "get",
-    url: "/user/"+otherUserId,
-    data: "data",
-    dataType: "dataType",
-    success: function (response) {
-        console.log(response)
-    }
-});
+    // $.ajax({
+    //     type: "get",
+    //     url: "/user/"+otherUserId,
+    //     data: "data",
+    //     dataType: "dataType",
+    //     success: function (response) {
+    //         console.log(response)
+    //     }
+    // });
 
 
 });
