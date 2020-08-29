@@ -1,5 +1,5 @@
 {
-  "name": "Date Match",
+  "name": "datematch",
   "version": "1.0.0",
   "description": "An application to help you find that special someone!",
   "main": "server.js",
