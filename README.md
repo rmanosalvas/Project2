@@ -1,4 +1,4 @@
-# First Base
+# Date Match
 
 ## Description
 This is a dating site to help connect people and get them to first base, a date that is. ! A user will post a date that they wish to take someone on. Other users can browse through the posted dates and notify the poster if they are interested in the date. Users can see the profiles of those who have expressed interest in their date posts. Welcome and enjoy!
