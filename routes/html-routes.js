@@ -113,78 +113,53 @@ router.get("/posts/:id", isAuthenticated, (req, res) => {
   });
 });
 
-// router.get("/matches", isAuthenticated, (req, res, next) => {
-//   // placeholder for all matches
-//   var matchArray = []
-//   var hbObj = {
-//     UserData: req.user,
-//     PotentialMatches: matchArray
-//   }
-//   console.log(req)
-//   console.log("***************** MATCHES REQUEST")
-//   db.match.findAll({
-//     where: {UserId: req.user.id},
-//         order: [
-//       ['createdAt', 'DESC']
-//     ],
-//   }).then((allMatches) => {
-//     console.log(allMatches)
-//      console.log(" 128 **********ALL MATCHESSSSS")
+router.get("/matches", isAuthenticated, (req, res, next) => {
 
-    
-//     allMatches.forEach(matched => {
-//       db.User.findOne({
-//         where: {id: matched.dataValues.user2}
-//       }).then((matchFound) => {
-//         matchArray.push(matchFound)
-//         console.log(matchFound)
-//         console.log("PUSHING MATCHES")
-//         console.log(matchArray)
-//         console.log("ALL MATCHES FOREAL############################")
-//       }).catch((err) => {
-//         console.log(err)
-//       });
-//     }) 
-
-//   }).catch((err) => {
-    
-//   });
-    
-  
-  
-// });
-
-router.get("/matches", isAuthenticated, (req, res) => {
-  console.log("ROUTE HIT SUCCESS")
-  // db.match.findAll({
-  //   where: {UserId: req.user.id},
-  //   include: [{ model: db.User, where: {UserId: 1}}],
-
-  // }).then((result) => {
-  //   console.log(result)
-  //   console.log("thEEEEE results!!!!!")
-
-
-
-
-  // }).catch((err) => {
-    
-  // });
-  db.User.findAll({
-    include: [{
-      model: db.match,
-      through: {
-        attributes: ['UserId'],
-        include: [{model: db.match }]
-        // where: {user2: req.user.id}
-      }
-    }]
+  const getMatches = db.match.findAll({
+    where: { user1: req.user.id}
   }).then((result) => {
-    console.log(result[0])
+    // map the result for the user IDs matched with the current user
+  let matchedUsers = result.map(match => {
+    const usersFiltered = [];
+    console.log(match.dataValues.user2)
+    usersFiltered.push(match.dataValues.user2)
+
+    return usersFiltered
+  });
+
+  db.User.findAll({
+    where: {id: matchedUsers}
+  }).then((allMatches) => {
+    console.log(allMatches)
+    
+
+    var hbsObj = {
+      UserData: req.user,
+      PotentialMatches: allMatches
+    }
+    res.render("matches", hbsObj)
+
+
     
   }).catch((err) => {
-    
+    console.log(err)
   });
+
+  
+  
+  
+  
+
+
+
+
+
+  }).catch((err) => {
+    console.log(err)
+  });
+
+  getMatches
+
 
 
 })

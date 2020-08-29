@@ -95,7 +95,10 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade",
             as: 'matched'
         });
-        User.belongsToMany(models.match, {through: 'id'})
+        User.belongsToMany(models.match, 
+            {through: 'id'},
+            { foreignKey: 'id', allowNull: false }
+        )
     
     }
 

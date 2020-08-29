@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
     Match.associate = function (models) {
         Match.belongsToMany(models.User, 
         {through: 'UserId'},
-        { foreignKey: 'UserId', allowNull: false }
+        { foreignKey: 'id', allowNull: false }
         );
     };
 
