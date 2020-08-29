@@ -7,8 +7,11 @@ const isAuthenticated = require("../config/middleware/isAuthenticated.js");
 const { profile } = require("console");
 const multer  = require('multer')
 const toButcketFS = require("../config/middleware/toButcketFS.js");
-var storage = multer.memoryStorage()
-var upload = multer({ storage: storage })
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
+// ######################################################
+// saving profile picture to AWS S3 #####################
+// ######################################################
 
 // Create new user account in the DB
 router.post('/api/signup', (req, res) => {
@@ -138,7 +141,7 @@ router.get("/api/user_data", function (req, res) {
 });
 
 
-router.put("/api/profile/:id", function (req, res) {
+router.put("/api/profile/:id", upload.single('avatar'), function (req, res) {
   db.User.update(
     { avatar : req.body.avatar,
       location: req.body.location,

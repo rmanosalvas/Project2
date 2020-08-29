@@ -132,47 +132,37 @@ router.get("/matches", isAuthenticated, (req, res, next) => {
   }).then((allMatches) => {
     console.log(allMatches)
     
-
     var hbsObj = {
       UserData: req.user,
       PotentialMatches: allMatches
     }
     res.render("matches", hbsObj)
 
-
-    
   }).catch((err) => {
     console.log(err)
   });
-
-  
-  
-  
-  
-
-
-
 
 
   }).catch((err) => {
     console.log(err)
   });
 
-  getMatches
-
-
+  getMatches//gets hoisted
 
 })
 
-
-router.get('/users', isAuthenticated, (req, res) => {
+router.get('/community', isAuthenticated, (req, res) => {
   db.User.findAll({
+    where: { },
+    order: [
+      ['createdAt', 'DESC']
+    ],
   }).then(function (allUsers) {
     var hbObj = {
       UserData: req.user,
       PotentialMatches: allUsers
     }
-    res.render("matches", hbObj)
+    res.render("community", hbObj)
   })
   
 });

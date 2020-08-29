@@ -1,11 +1,11 @@
 <script src="/assets/js/match.js"></script>
 <input id="othersId" value="{{Post.dataValues}}" hidden>
 <br><br>
-<h2 id="myMatches" class="text-center">{{UserData.first_name}} {{UserData.last_name}} Matches</h2>
+<h2 id="myMatches" class="text-center">{{UserData.first_name}} {{UserData.last_name}} User Community</h2>
 <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
-            {{#each matchedUser}}
-            {{> match-li}}
+            {{#each PotentialMatches}}
+            {{> community-li}}
             <br>
             {{/each}}
     </div>
@@ -14,4 +14,3 @@
 <br>
 <br>
 <br>
-
